@@ -1,6 +1,6 @@
 # react-cli
 
-[Scaffholding](https://en.wikipedia.org/wiki/Scaffolding) tool for [React](https://facebook.github.io/react/)
+[Scaffolding](https://en.wikipedia.org/wiki/Scaffolding) tool for [React](https://facebook.github.io/react/)
 
 react-cli is a command line interface which brings smooth developer experience (DX) for React devs. react-cli provides a better way to generate react projects with [react-boilerplate](https://github.com/99xt/react-boilerplate). With this tool it's possible to continue generating boilerplate code with heavy customizations once a project is initiated.
 
@@ -14,7 +14,7 @@ Collaborate and contribute through our public [trello](https://trello.com/b/GTrI
 
 ## References
 
-- [What is scaffholding ?](https://en.wikipedia.org/wiki/Scaffold_(programming))
+- [What is scaffhlding ?](https://en.wikipedia.org/wiki/Scaffold_(programming))
 - [What is a CLI ?](https://www.techopedia.com/definition/3337/command-line-interface-cli)
 - [Why good UX in CLIs matters](https://trevorsullivan.net/2016/07/11/designing-command-line-tools/)
 - Projects with similar objectives
