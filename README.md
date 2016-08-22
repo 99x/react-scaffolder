@@ -14,7 +14,7 @@ Collaborate and contribute through our public [trello](https://trello.com/b/GTrI
 
 ## References
 
-- [What is scaffhlding ?](https://en.wikipedia.org/wiki/Scaffold_(programming))
+- [What is scaffolding ?](https://en.wikipedia.org/wiki/Scaffold_(programming))
 - [What is a CLI ?](https://www.techopedia.com/definition/3337/command-line-interface-cli)
 - [Why good UX in CLIs matters](https://trevorsullivan.net/2016/07/11/designing-command-line-tools/)
 - Projects with similar objectives
