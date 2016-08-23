@@ -19,5 +19,12 @@
   "bugs": {
     "url": "https://github.com/rajikaimal/react-cli/issues"
   },
-  "homepage": "https://github.com/rajikaimal/react-cli#readme"
+  "homepage": "https://github.com/rajikaimal/react-cli#readme",
+  "dependencies": {
+    "commander": "^2.9.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.3.1",
+    "eslint-config-google": "^0.6.0"
+  }
 }
