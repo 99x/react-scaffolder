@@ -2,7 +2,9 @@
   "name": "react-cli",
   "version": "0.0.1",
   "description": "Scaffolding tool for React",
-  "main": "index.js",
+  "bin": {
+    "react": "./bin/initialize.js"
+  },
   "scripts": {
     "test": "mocha"
   },
