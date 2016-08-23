@@ -1,0 +1,23 @@
+{
+  "name": "react-cli",
+  "version": "0.0.1",
+  "description": "Scaffolding tool for React",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajikaimal/react-cli.git"
+  },
+  "keywords": [
+    "react",
+    "cli"
+  ],
+  "author": "99xtechnology.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rajikaimal/react-cli/issues"
+  },
+  "homepage": "https://github.com/rajikaimal/react-cli#readme"
+}
