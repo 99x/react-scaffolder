@@ -4,9 +4,15 @@ const program = require('commander');
 const init = require('../lib/init');
 const packageVersion = require('../package.json').version;
 
+/**
+ * set commander version
+ */
 program
 	.version(packageVersion);
 
+/**
+ * command for initializing a project
+ */
 program
   .command('init [projectname]')
   .alias('i')
@@ -29,5 +35,9 @@ program
     console.log('    $ react-cli init -l awesomereact');
     console.log();
   });
+
+/**
+ * parse commander object
+ */
 
 program.parse(process.argv);
