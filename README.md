@@ -4,6 +4,8 @@
 
 react-cli is a command line interface which brings smooth developer experience (DX) for React devs. react-cli provides a better way to generate react projects with [react-boilerplate](https://github.com/99xt/react-boilerplate). With this tool it's possible to continue generating boilerplate code with heavy customizations once a project is initiated.
 
+> under development
+
 ## Install
 
 ## Usage
