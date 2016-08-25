@@ -1,7 +1,7 @@
 {
   "name": "react-boilerplate",
-  "version": "1.0.0",
-  "description": "Boilerplate for ReactJS project live reloading enabled",
+  "version": "0.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --content-base src/ --hot",
@@ -9,17 +9,9 @@
     "test": ""
   },
   "keywords": [
-    "react",
-    "reactjs",
-    "boilerplate",
-    "hot",
-    "reload",
-    "hmr",
-    "live",
-    "edit",
-    "webpack"
+
   ],
-  "author": "99xtechnology.com",
+  "author": "",
   "license": "MIT",
   "dependencies": {
     "react": "^15.1.0",
