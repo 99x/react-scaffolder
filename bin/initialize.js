@@ -26,7 +26,14 @@ program
     }
     else
     {
-      init(projectname, options.eslint);
+			init(projectname, options.eslint, function initProject(res) {
+				if(res) {
+					console.log('application created successfully');
+				}
+				else {
+					console.log('something went wrong !');
+				}
+			});
     }
   }).on('--help', function() {
     console.log('  Examples:');
