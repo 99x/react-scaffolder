@@ -10,6 +10,19 @@ describe('initialize React application', function() {
 			rmdir('../test-project', err => {
 				if(err) throw new Error('failed');
 				else {
+					assert.equal(result, true);
+					done();
+				}
+			});
+		});
+	});
+
+	it('should initialize react app with eslint configuration', function(done) {
+		init('../test-project', true, function(result) {
+			rmdir('../test-project', err => {
+				if(err) throw new Error('failed');
+				else {
+					assert.equal(result, true);
 					done();
 				}
 			});
