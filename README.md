@@ -1,4 +1,4 @@
-# react-cli
+# react-cli ![Dependency status](https://david-dm.org/99xt/react-cli.svg)
 
 [Scaffolding](https://en.wikipedia.org/wiki/Scaffolding) tool for [React](https://facebook.github.io/react/)
 
