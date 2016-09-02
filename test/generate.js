@@ -23,10 +23,7 @@ describe('Create react components', function() {
 	it('should not create a react component', function(done) {
 		const answers = {
 			"componentType": "child",
-			"propTypes": "yes",
-			"propNo": "2",
-			"propName": "first",
-			"propType": "number"
+			"propTypes": "no"
 		};
 	  const res = createComponent('non-existing-module', 'sample', answers);
 	  assert.equal(res, false);
