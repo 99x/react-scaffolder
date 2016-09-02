@@ -5,21 +5,21 @@ class <name> extends React.Component {
 		super(props);
 	}
 
-	componentDidMount: function() {
-
+	componentDidMount() {
+		//data loading
 	}
 
-	componentWillUnmount: function() {
-
+	componentWillUnmount() {
+		//cleanup
 	}
 
 	render() {
 	  return (
 	     <div>
-	        {/* component implementation JSX */}            
+	       { /* JSX */ }
 	     </div>
 	  );
-	} 
+	}
 }
 
 export default <name>;

@@ -2,12 +2,8 @@ import React from 'react';
 
 const <name> = (props) => (
 	<div>
-
+	  { /* JSX */ }
 	</div>
 );
-
-<name>.propTypes = {
-
-}
 
 export default <name>;
