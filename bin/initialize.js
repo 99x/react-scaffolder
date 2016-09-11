@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 
 const program = require('commander');
+const inquirer = require('inquirer');
 const init = require('../lib/init');
 const generate = require('../lib/generate');
 const packageVersion = require('../package.json').version;
+const checkDuplicates = require('../lib/utils/checkduplicates');
 
 /**
  * set commander version
@@ -47,21 +49,122 @@ program
  * command for generating a react component
  */
 program
-  .command('generate [modulename] [name]')
+  .command('generate [type] [modulename] [name]')
   .alias('g')
   .description('generate a react component')
-  .option("-p, --parent", "parent component")
-  .option("-c, --child", "child component")
-  .action(function(modulename, name, options) {
-    console.log(modulename, name);
-    if(modulename !== undefined && name !== undefined && options !== undefined) {
-    	if(options.child) {
-    		generate.create(modulename, name, 'child');
-    	}
-    	else
-    	{
-    		generate.create(modulename, name, 'parent');
-    	}
+  .action(function(type, modulename, name, options) {
+    if(type !== undefined && modulename !== undefined && name !== undefined) {
+    	if(type === 'component') {
+
+    		let choices = [];
+
+    		let numberOfPropTypes = 0;
+
+    		let inputPropTypeName = {
+			    type: 'input',
+			    name: 'propName',
+			    message: 'Prop name',
+			    paginated: true,
+			    validate: function(input) {
+			    	let regex = /[^a-z\d]/i;
+			    	return false;
+			    	return (regex.test(input));
+			    },
+			    when: function(answer) {
+			    	return answer.propTypes === 'yes'
+			    }
+			  };
+
+    		choices.push({
+				  name: 'child',
+				  value: 'child',
+				  short: 'child'
+				});
+
+				choices.push({
+				  name: 'parent',
+				  value: 'parent',
+				  short: 'parent'
+				});
+				
+				inquirer.prompt([
+				  {
+				    type: 'list',
+				    name: 'componentType',
+				    message: 'Select component type',
+				    paginated: true,
+				    choices: choices
+				  },
+				  {
+				    type: 'list',
+				    name: 'propTypes',
+				    message: 'Add propTypes',
+				    paginated: true,
+				    choices: ['yes', 'no']
+				  },
+				  {
+				    type: 'input',
+				    name: 'propNo',
+				    message: 'Number of prop types',
+				    paginated: true,
+				    validate: function(input) {
+				    	let regex = /^\d+$/;
+				    	//return false;
+				    	if(!regex.test(input)) {
+				    		return 'enter a number';
+				    	}
+				    	return true;
+				    },
+				    when: function(answer) {
+				    	return answer.propTypes === 'yes'
+				    }
+				  },
+				  {
+				    type: 'input',
+				    name: 'propNames',
+				    message: 'Prop names',
+				    paginated: true,
+				    when: function(answer) {
+				    	numberOfPropTypes = answer.propNo;
+				    	return answer.propTypes === 'yes'
+				    },
+				    validate: function(input) {
+				    	let propNames = input.split(' ');
+				    	if(propNames.length !== Number(numberOfPropTypes)) {
+				    		return `enter ${numberOfPropTypes} prop names`;
+				    	}
+				    	let regex = /^[a-zA-Z]+$/;
+				    	
+				    	if(!checkDuplicates(propNames)) {
+				    		return 'duplicate prop names';
+				    	}
+				    	// if(!regex.test(input)) {
+				    	// 	return 'enter valid name [alpha]'
+				    	// }
+				    	return true;
+				    }
+				  }
+				]).then(function (answers) {
+					let opts = [];
+					//console.log(numberOfPropTypes);
+					let propNames = answers.propNames.split(' ');
+
+					for(let a=0; a<numberOfPropTypes; a++) {
+						let propTypeChoice = {
+							type: 'list',
+							name: `propType${a}`,
+							message: `Select prop type for ${propNames[a]}`,
+							paginated: true,
+							choices: ['number', 'string', 'bool', 'object', 'array', 'func', 'symbol'],
+						};
+						opts.push(propTypeChoice);
+					}
+					inquirer.prompt(opts);
+				  //generate.createComponent(modulename, name, answers);
+				});
+			} else if(type === 'test') {
+				console.log('generate test');
+			}
     }
     else
     {
@@ -73,9 +176,7 @@ program
     console.log('    $ react-cli generate core helloworld -p');
     console.log('    $ react-cli generate core hello -c');
     console.log();
-  });  
-
-
+  });
 
 /**
  * parse commander object
