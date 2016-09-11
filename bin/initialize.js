@@ -4,6 +4,7 @@ const program = require('commander');
 const inquirer = require('inquirer');
 const init = require('../lib/init');
 const generate = require('../lib/generate');
+const configRc = require('../lib/config');
 const packageVersion = require('../package.json').version;
 const checkDuplicates = require('../lib/utils/checkduplicates');
 
@@ -43,6 +44,17 @@ program
     console.log('    $ react-cli init awesomereact');
     console.log('    $ react-cli init -l awesomereact');
     console.log();
+  });
+
+/**
+ * command changing .reactclirc file
+ */
+program
+  .command('config [key] [value]')
+  .action(function (key, value) {
+  	configRc(key, value, function config(err, res) {
+  		if(err) throw new Error('unable to change config');
+  	});
   });
 
 /**
@@ -146,21 +158,22 @@ program
 				  }
 				]).then(function (answers) {
 					let opts = [];
-					//console.log(numberOfPropTypes);
 					let propNames = answers.propNames.split(' ');
 
-					for(let a=0; a<numberOfPropTypes; a++) {
+					for(let count=0; count<numberOfPropTypes; count++) {
 						let propTypeChoice = {
 							type: 'list',
-							name: `propType${a}`,
-							message: `Select prop type for ${propNames[a]}`,
+							name: `propType${count}`,
+							message: `Select prop type for ${propNames[count]}`,
 							paginated: true,
 							choices: ['number', 'string', 'bool', 'object', 'array', 'func', 'symbol'],
 						};
 						opts.push(propTypeChoice);
 					}
-					inquirer.prompt(opts);
-				  //generate.createComponent(modulename, name, answers);
+					inquirer.prompt(opts)
+						.then(function(answersInner) {
+							generate.createComponent(modulename, name, answers);
+						});
 				});
 			} else if(type === 'test') {
 				console.log('generate test');
