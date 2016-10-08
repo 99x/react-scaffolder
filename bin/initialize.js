@@ -65,7 +65,7 @@ program
   .alias('g')
   .description('generate a react component')
   .action(function(type, modulename, name, options) {
-    if(type !== undefined && modulename !== undefined && name !== undefined) {
+    if(type !== undefined && modulename !== undefined) {
     	if(type === 'component') {
 
     		let choices = [];
@@ -163,7 +163,7 @@ program
 					for(let count=0; count<numberOfPropTypes; count++) {
 						let propTypeChoice = {
 							type: 'list',
-							name: `propType${count}`,
+							name: `${propNames[count]}`,
 							message: `Select prop type for ${propNames[count]}`,
 							paginated: true,
 							choices: ['number', 'string', 'bool', 'object', 'array', 'func', 'symbol'],
@@ -172,7 +172,7 @@ program
 					}
 					inquirer.prompt(opts)
 						.then(function(answersInner) {
-							generate.createComponent(modulename, name, answers);
+							generate.createComponent(modulename, name, answers, answersInner);
 						});
 				});
 			} else if(type === 'test') {
