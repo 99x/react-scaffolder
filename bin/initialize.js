@@ -5,6 +5,7 @@ const inquirer = require('inquirer');
 const init = require('../lib/init');
 const generate = require('../lib/generate');
 const configRc = require('../lib/config');
+const viewDirectoryStructure = require('../lib/view');
 const packageVersion = require('../package.json').version;
 const checkDuplicates = require('../lib/utils/checkduplicates');
 
@@ -55,6 +56,28 @@ program
   	configRc(key, value, function config(err, res) {
   		if(err) throw new Error('unable to change config');
   	});
+  });
+
+/**
+ * command view directory structure - components/tests
+ */
+program
+  .command('view')
+  .option('-c, --component', 'view component only')
+  .option('-t, --test', 'view test only')
+  .action(function (options) {
+  	if(options.component && options.test) {
+  		viewDirectoryStructure(true, true);
+  	}
+  	else if(options.component) {
+  		viewDirectoryStructure(true, false);
+  	}
+  	else if(options.test) {
+  		viewDirectoryStructure(false, true);
+  	}
+  	else if(!options.component && !options.test) {
+  		console.log('provide options');	
+  	}
   });
 
 /**
@@ -176,7 +199,7 @@ program
 						});
 				});
 			} else if(type === 'test') {
-				console.log('generate test');
+				generate.createTest(modulename, name);
 			}
     }
     else
@@ -190,6 +213,8 @@ program
     console.log('    $ react-cli generate core hello -c');
     console.log();
   });
+
+
 
 /**
  * parse commander object
