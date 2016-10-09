@@ -69,6 +69,36 @@ View React components file directory.
 * `-t`
 View tests file directory.
 
+### react config [key] [value]
+*alias: v*
+
+Change configuration in .reactclirc.
+
+#### key
+
+Key for configuration
+example: client
+
+#### value
+
+Value for configuration
+example: src (source directory)
+
+---------------------------------------
+
+## Configuring existing projects
+
+To use react-cli in existing React project navigate to directory where React components are created.
+Create reac-cli configuration file, .reactlicrc (similar to .babelrc). Add configuration in key value pairs.
+
+```
+{
+	"client": "src" 
+}
+```
+
+This specifies that React components are placed in `src/components` directory.
+
 ---------------------------------------
 
 ## Features
