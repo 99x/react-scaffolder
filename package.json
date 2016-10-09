@@ -1,5 +1,5 @@
 {
-  "name": "react-cli",
+  "name": "@99xt/react-cli",
   "version": "0.0.1",
   "description": "Scaffolding tool for React",
   "bin": {
