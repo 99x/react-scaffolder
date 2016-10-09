@@ -86,6 +86,15 @@ View tests file directory.
 - Projects with similar objectives
  - [Yeoman](http://yeoman.io/)
 
+## Contributor guidelines
+
+- Fork the repository.
+- Clone the repository.
+- Create your own branch.
+- Create tests and make sure tests pass on travis.
+- Create a pull requests with changes made.
+
+For more information refer [CONTRIBUTING.md](https://github.com/99xt/react-cli/blob/master/CONTRIBUTING.md)
 
 ## License
 
