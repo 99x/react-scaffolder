@@ -89,10 +89,10 @@ View tests file directory.
 ## Contributor guidelines
 
 - Fork the repository.
-- Clone the repository.
+- Clone the forked repository.
 - Create your own branch.
 - Create tests and make sure tests pass on travis.
-- Create a pull requests with changes made.
+- Create a pull request with changes made.
 
 For more information refer [CONTRIBUTING.md](https://github.com/99xt/react-cli/blob/master/CONTRIBUTING.md)
 
