@@ -61,6 +61,7 @@ program
  */
 program
   .command('config [key] [value]')
+  .alias('c')
   .action(function (key, value) {
   	const spinner = ora('configuring .reactclirc').start();
   	configRc(key, value, function config(err, res) {
@@ -83,6 +84,7 @@ program
  */
 program
   .command('view')
+  .alias('v')
   .option('-c, --component', 'view component only')
   .option('-t, --test', 'view test only')
   .action(function (options) {
