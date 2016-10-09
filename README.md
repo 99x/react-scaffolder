@@ -6,15 +6,69 @@
 
 react-cli is a command line interface which brings smooth developer experience (DX) for React devs. react-cli provides a better way to generate react projects with [react-boilerplate](https://github.com/99xt/react-boilerplate). With this tool it's possible to continue generating boilerplate code with heavy customizations once a project is initiated.
 
-> under development
-
 ## Install
+
+```
+$ npm install -g @99xt/react-cli
+```
 
 ## Usage
 
-## Development workflow
+### react init [name]
+*alias: i*
 
-Collaborate and contribute through our public [trello](https://trello.com/b/GTrIacxW/react-cli) board
+#### name
+
+Project name.
+
+#### Options
+
+* `-l`
+Add eslint configuration.
+
+### react generate component [module] [component]
+*alias: g*
+
+#### module
+
+Module name where the react component should be placed within. (Subdirectory within components directory)
+
+#### component
+
+React component name.
+
+### react generate test [module] [component]
+*alias: g*
+
+Create React component.
+
+#### module
+
+Module name where the test file should be placed within. (Subdirectory within __tests__ directory)
+
+#### component
+
+Test file name.
+
+### react view -c -t
+*alias: v*
+
+View react components and test files.
+
+#### Options
+
+* `-c`
+View React components file directory.
+
+* `-t`
+View tests file directory.
+
+## Features
+
+- Initiate React projects
+- Create React components
+- Create test files
+- Interactive view of the component structure
 
 ## References
 
