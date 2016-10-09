@@ -8,6 +8,7 @@ const configRc = require('../lib/config');
 const viewDirectoryStructure = require('../lib/view');
 const packageVersion = require('../package.json').version;
 const checkDuplicates = require('../lib/utils/checkduplicates');
+const ora = require('ora');
 
 /**
  * set commander version
@@ -30,12 +31,20 @@ program
     }
     else
 		{
+			const spinner = ora('creating directory structure').start();
 			init(projectname, options.eslint, function initProject(res) {
 				if(res) {
-					console.log('application created successfully');
+					setTimeout(() => {
+						spinner.text = 'application created successfully';
+						spinner.succeed();
+						console.log(`\t$ cd ${projectname}\n \t$ npm install \n \tHappy hacking ♥`);
+					}, 1000);
 				}
 				else {
-					console.log('something went wrong !');
+					setTimeout(() => {
+						spinner.text = 'something went wrong !';
+						spinner.fail();
+					}, 1000);
 				}
 			});
 		}
@@ -53,8 +62,19 @@ program
 program
   .command('config [key] [value]')
   .action(function (key, value) {
+  	const spinner = ora('configuring .reactclirc').start();
   	configRc(key, value, function config(err, res) {
-  		if(err) throw new Error('unable to change config');
+  		if(err) {
+  			setTimeout(() => {
+	  			spinner.text = 'something went wrong !';
+	  			spinner.fail();
+	  		}, 1000);	
+  			throw new Error('unable to change config');
+ 			}  		
+  		setTimeout(() => {
+  			spinner.text = 'successfully configured !';
+  			spinner.succeed();
+  		}, 1000);
   	});
   });
 
@@ -66,17 +86,44 @@ program
   .option('-c, --component', 'view component only')
   .option('-t, --test', 'view test only')
   .action(function (options) {
-  	if(options.component && options.test) {
-  		viewDirectoryStructure(true, true);
+  	const spinner = ora('loading directory structure \n').start();
+  	if(options.component && options.test) {	
+  		viewDirectoryStructure(true, true, function(status) {
+  			if(status) {
+  				spinner.text = 'successfully loaded !';
+  				spinner.succeed();
+  			}
+  			else {
+  				spinner.fail();
+  			}
+  		});
   	}
   	else if(options.component) {
-  		viewDirectoryStructure(true, false);
+  		viewDirectoryStructure(true, false, function(status) {
+  			if(status) {
+  				spinner.text = 'successfully loaded !';
+  				spinner.succeed();
+  			}
+  			else {
+  				spinner.text = 'successfully loaded !';
+  				spinner.fail();
+  			}
+  		});
   	}
   	else if(options.test) {
-  		viewDirectoryStructure(false, true);
+  		viewDirectoryStructure(false, true, function(status) {
+  			if(status) {
+  				spinner.text = 'successfully loaded !';
+  				spinner.succeed();
+  			}
+  			else {
+  				spinner.fail();
+  			}
+  		});
   	}
   	else if(!options.component && !options.test) {
-  		console.log('provide options');	
+  		spinner.text = 'provide options';
+  		spinner.fail();
   	}
   });
 
@@ -90,7 +137,6 @@ program
   .action(function(type, modulename, name, options) {
     if(type !== undefined && modulename !== undefined) {
     	if(type === 'component') {
-
     		let choices = [];
 
     		let numberOfPropTypes = 0;
@@ -180,31 +226,57 @@ program
 				    }
 				  }
 				]).then(function (answers) {
-					let opts = [];
-					let propNames = answers.propNames.split(' ');
-
-					for(let count=0; count<numberOfPropTypes; count++) {
-						let propTypeChoice = {
-							type: 'list',
-							name: `${propNames[count]}`,
-							message: `Select prop type for ${propNames[count]}`,
-							paginated: true,
-							choices: ['number', 'string', 'bool', 'object', 'array', 'func', 'symbol'],
-						};
-						opts.push(propTypeChoice);
-					}
-					inquirer.prompt(opts)
-						.then(function(answersInner) {
-							generate.createComponent(modulename, name, answers, answersInner);
+					if(answers.propTypes === 'no') {
+						generate.createComponent(modulename, name, answers, null, function(status) {
+							if(status) {
+								const spinner = ora('loading directory structure \n').start();
+								spinner.text = 'component created successfully';
+								spinner.succeed();
+							}
 						});
+					}
+					else {
+						let opts = [];
+						let propNames = answers.propNames.split(' ');
+
+						for(let count=0; count<numberOfPropTypes; count++) {
+							let propTypeChoice = {
+								type: 'list',
+								name: `${propNames[count]}`,
+								message: `Select prop type for ${propNames[count]}`,
+								paginated: true,
+								choices: ['number', 'string', 'bool', 'object', 'array', 'func', 'symbol'],
+							};
+							opts.push(propTypeChoice);
+						}
+						inquirer.prompt(opts)
+							.then(function(answersInner) {
+								generate.createComponent(modulename, name, answers, answersInner, function(status) {
+									if(status) {
+										const spinner = ora('loading directory structure \n').start();
+										spinner.text = 'component created successfully';
+										spinner.succeed();
+									}
+								});
+							});
+					}
 				});
-			} else if(type === 'test') {
-				generate.createTest(modulename, name);
+			}
+			else if(type === 'test') {
+				generate.createTest(modulename, name, function(status) {
+					const spinner = ora('creating test file \n').start();
+					spinner.text = 'test file created successfully';
+					spinner.succeed();
+				});
 			}
     }
     else
     {
-    	console.log('please provide required options');
+    	setTimeout(() => {
+    		const spinner = ora('').start();
+				spinner.text = 'please provide required options';
+				spinner.fail();
+    	}, 500);
     }
   }).on('--help', function() {
     console.log('  Examples:');
@@ -213,8 +285,6 @@ program
     console.log('    $ react-cli generate core hello -c');
     console.log();
   });
-
-
 
 /**
  * parse commander object
