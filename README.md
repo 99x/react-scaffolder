@@ -26,6 +26,8 @@ Project name.
 * `-l`
 Add eslint configuration.
 
+---------------------------------------
+
 ### react generate component [module] [component]
 *alias: g*
 
@@ -36,6 +38,8 @@ Module name where the react component should be placed within. (Subdirectory wit
 #### component
 
 React component name.
+
+---------------------------------------
 
 ### react generate test [module] [component]
 *alias: g*
@@ -50,6 +54,8 @@ Module name where the test file should be placed within. (Subdirectory within __
 
 Test file name.
 
+---------------------------------------
+
 ### react view -c -t
 *alias: v*
 
@@ -62,6 +68,8 @@ View React components file directory.
 
 * `-t`
 View tests file directory.
+
+---------------------------------------
 
 ## Features
 
