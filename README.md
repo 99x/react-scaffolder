@@ -98,4 +98,4 @@ For more information refer [CONTRIBUTING.md](https://github.com/99xt/react-cli/b
 
 ## License
 
-MIT
+MIT © [99XT](https://github.com/99xt)
