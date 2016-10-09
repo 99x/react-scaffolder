@@ -89,7 +89,7 @@ example: src (source directory)
 ## Configuring existing projects
 
 To use react-cli in existing React project navigate to directory where React components are created.
-Create reac-cli configuration file, .reactlicrc (similar to .babelrc). Add configuration in key value pairs.
+Create react-cli configuration file, `.reactclicrc` (similar to `.babelrc`). Add configuration in key value pairs.
 
 ```
 {
