@@ -2,7 +2,7 @@ const assert = require('chai').assert;
 const init = require('../lib/init');
 const rmdir = require('rimraf');
 
-describe('initialize React application', function() {
+describe('Initialize React application', function() {
 	it('should initialize react app', function(done) {
 		init('../test-project', undefined, function(result) {
 			rmdir('../test-project', err => {
