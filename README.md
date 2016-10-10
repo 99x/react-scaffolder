@@ -70,7 +70,7 @@ View React components file directory.
 View tests file directory.
 
 ### react config [key] [value]
-*alias: v*
+*alias: c*
 
 Change configuration in .reactclirc.
 
@@ -89,7 +89,7 @@ example: src (source directory)
 ## Configuring existing projects
 
 To use react-cli in existing React project navigate to directory where React components are created.
-Create react-cli configuration file, `.reactclicrc` (similar to `.babelrc`). Add configuration in key value pairs.
+Create react-cli configuration file, `.reactclirc` (similar to `.babelrc`). Add configuration in key value pairs.
 
 ```
 {
