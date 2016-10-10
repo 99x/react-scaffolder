@@ -10,23 +10,13 @@ describe('Create react components', function() {
 			"propName": "first",
 			"propType": "number"
 		};
-	  const res = createComponent('core', 'sample', answers);
-	  assert.equal(res, true);
-	  done();
-	});
-	it('should not create a parent react component', function(done) {
-	  const answers = {};
-	  const res = createComponent('core', 'sample', answers);
-	  assert.equal(res, false);
-	  done();
-	});
-	it('should not create a react component', function(done) {
-		const answers = {
-			"componentType": "child",
-			"propTypes": "no"
+		const answersInner = { 
+			first: 'string', 
+			last: 'string' 
 		};
-	  const res = createComponent('non-existing-module', 'sample', answers);
-	  assert.equal(res, false);
-	  done();
+	  createComponent('core', 'sample', answers, answersInner, function(status) {
+	  	assert.equal(status, 'module doesn\'t exist');
+	  	done();
+	  });
 	});
 });
