@@ -11,6 +11,7 @@ const checkDuplicates = require('../lib/utils/checkduplicates');
 const ora = require('ora');
 
 init = new initApp();
+
 /**
  * set commander version
  */
