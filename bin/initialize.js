@@ -2,14 +2,15 @@
 
 const program = require('commander');
 const inquirer = require('inquirer');
-const init = require('../lib/init');
-const generate = require('../lib/generate');
+const initApp = require('../lib/init');
+const generateApp = require('../lib/generate');
 const configRc = require('../lib/config');
 const viewDirectoryStructure = require('../lib/view');
 const packageVersion = require('../package.json').version;
 const checkDuplicates = require('../lib/utils/checkduplicates');
 const ora = require('ora');
 
+init = new initApp();
 /**
  * set commander version
  */
@@ -32,7 +33,7 @@ program
     else
 		{
 			const spinner = ora('creating directory structure').start();
-			init(projectname, options.eslint, function initProject(res) {
+			init.initialize(projectname, options.eslint, function initProject(res) {
 				if(res) {
 					setTimeout(() => {
 						spinner.text = 'application created successfully';
@@ -228,6 +229,7 @@ program
 				    }
 				  }
 				]).then(function (answers) {
+					generate = new generateApp(); 
 					if(answers.propTypes === 'no') {
 						generate.createComponent(modulename, name, answers, null, function(status) {
 							if(status) {
