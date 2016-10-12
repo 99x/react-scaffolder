@@ -12,6 +12,17 @@ react-cli is a command line interface which brings smooth developer experience (
 $ npm install -g @99xt/react-cli
 ```
 
+## Quick Start
+
+Quickest way to get up and running with react-cli
+
+- Install the CLI - ```$ npm install -g @99xt/react-cli```
+- Initiate a project - ```$ react init awesome-project && cd awesome-project```
+- Install dependencies - ```$ npm install```
+- Run the build - ```$ npm run build && npm start```
+- Instantly create React components - ```$ react g component feed footer``` 
+- Check with interactive view - ```$ react v -c```
+
 ## Usage
 
 ### react init [name]
