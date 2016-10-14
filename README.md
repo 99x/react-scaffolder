@@ -1,18 +1,125 @@
-# react-cli ![Dependency status](https://david-dm.org/99xt/react-cli.svg)
+# react-cli ![Dependency status](https://david-dm.org/99xt/react-cli.svg) [![Build Status](https://travis-ci.org/99xt/react-cli.svg?branch=master)](https://travis-ci.org/99xt/react-cli)
 
-[Scaffolding](https://en.wikipedia.org/wiki/Scaffolding) tool for [React](https://facebook.github.io/react/)
+[![Join the chat at https://gitter.im/react-scaffolder/Lobby](https://badges.gitter.im/react-scaffolder/Lobby.svg)](https://gitter.im/react-scaffolder/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+[![Join the chat at https://gitter.im/react-cli-99xt/Lobby](https://badges.gitter.im/react-cli-99xt/Lobby.svg)](https://gitter.im/react-cli-99xt/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+Scaffolding tool for [React](https://facebook.github.io/react/)
 
 react-cli is a command line interface which brings smooth developer experience (DX) for React devs. react-cli provides a better way to generate react projects with [react-boilerplate](https://github.com/99xt/react-boilerplate). With this tool it's possible to continue generating boilerplate code with heavy customizations once a project is initiated.
 
-> under development
-
 ## Install
+
+```
+$ npm install -g @99xt/react-cli
+```
+
+## Quick Start
+
+Quickest way to get up and running with react-cli
+
+- Install the CLI - ```$ npm install -g @99xt/react-cli```
+- Initiate a project - ```$ react init awesome-project && cd awesome-project```
+- Install dependencies - ```$ npm install```
+- Run the build - ```$ npm run build && npm start```
+- Instantly create React components - ```$ react g component feed footer``` 
+- Check with interactive view - ```$ react v -c```
 
 ## Usage
 
-## Development workflow
+### react init [name]
+*alias: i*
 
-Collaborate and contribute through our public [trello](https://trello.com/b/GTrIacxW/react-cli) board
+#### name
+
+Project name.
+
+#### Options
+
+* `-l`
+Add eslint configuration.
+
+---------------------------------------
+
+### react generate component [module] [component]
+*alias: g*
+
+#### module
+
+Module name where the react component should be placed within. (Subdirectory within components directory)
+
+#### component
+
+React component name.
+
+---------------------------------------
+
+### react generate test [module] [component]
+*alias: g*
+
+Create React component.
+
+#### module
+
+Module name where the test file should be placed within. (Subdirectory within __tests__ directory)
+
+#### component
+
+Test file name.
+
+---------------------------------------
+
+### react view -c -t
+*alias: v*
+
+View react components and test files.
+
+#### Options
+
+* `-c`
+View React components file directory.
+
+* `-t`
+View tests file directory.
+
+### react config [key] [value]
+*alias: c*
+
+Change configuration in `.reactclirc`.
+
+#### key
+
+Key for configuration
+example: `client`
+
+#### value
+
+Value for configuration
+example: `src` (source directory)
+
+---------------------------------------
+
+## Configuring existing projects
+
+To use react-cli in existing React project navigate to directory where React components are created.
+Create react-cli configuration file, `.reactclirc` (similar to `.babelrc`). Add configuration in key value pairs.
+
+```
+{
+	"client": "src" 
+}
+```
+
+This specifies that React components are placed in `src/components` directory.
+
+---------------------------------------
+
+## Features
+
+- Initiate React projects
+- Create React components
+- Create test files
+- Interactive view of the component structure
 
 ## References
 
@@ -22,14 +129,16 @@ Collaborate and contribute through our public [trello](https://trello.com/b/GTrI
 - Projects with similar objectives
  - [Yeoman](http://yeoman.io/)
 
-## Contributing
+## Contributor guidelines
 
-We love our contributors! If you'd like to contribute to the project, feel free to submit a PR. But please keep in mind the following guidelines:
+- Fork the repository.
+- Clone the forked repository.
+- Create your own branch.
+- Create tests and make sure tests pass on travis.
+- Create a pull request with changes made.
 
-Propose your changes before you start working on a PR. You can reach us by submitting a Github issue. This is just to make sure that no one else is working on the same change, and to figure out the best way to solve the issue.
-If you're out of ideas, but still want to contribute, help us in solving Github issues already verified.
-Contributions are not just PRs! We'd be grateful for having you, and if you could provide some support for new comers, that be great! You can also do that by answering this plugin related questions on Stackoverflow. You can also contribute by writing. Feel free to let us know if you want to publish a useful guides, improve the documentation (attributed to you, thank you!) that you feel will help the community.
+For more information refer [CONTRIBUTING.md](https://github.com/99xt/react-cli/blob/master/CONTRIBUTING.md)
 
 ## License
 
-MIT
+MIT © [99XT](https://github.com/99xt)
