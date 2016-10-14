@@ -1,6 +1,6 @@
 {
-  "name": "@99xt/react-cli",
-  "version": "0.2.1",
+  "name": "react-scaffolder",
+  "version": "0.2.2",
   "description": "Scaffolding tool for React",
   "bin": {
     "react": "./bin/initialize.js"
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/99xt/react-cli.git"
+    "url": "git+https://github.com/99xt/react-scaffolder.git"
   },
   "keywords": [
     "react",
@@ -19,9 +19,9 @@
   "author": "99xtechnology.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/99xt/react-cli/issues"
+    "url": "https://github.com/99xt/react-scaffolder/issues"
   },
-  "homepage": "https://github.com/99xt/react-cli#readme",
+  "homepage": "https://github.com/99xt/react-scaffolder#readme",
   "dependencies": {
     "ascii-table": "0.0.9",
     "chalk": "^1.1.3",
