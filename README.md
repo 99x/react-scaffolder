@@ -16,7 +16,7 @@ $ npm install -g @99xt/react-cli
 
 Quickest way to get up and running with react-cli
 
-- Install the CLI - ```$ npm install -g @99xt/react-cli```
+- Install the CLI - ```$ npm install -g react-scaffolder```
 - Initiate a project - ```$ react init awesome-project && cd awesome-project```
 - Install dependencies - ```$ npm install```
 - Run the build - ```$ npm run build && npm start```
