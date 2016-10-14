@@ -9,7 +9,7 @@ react-cli is a command line interface which brings smooth developer experience (
 ## Install
 
 ```
-$ npm install -g @99xt/react-cli
+$ npm install -g react-scaffolder
 ```
 
 ## Quick Start
