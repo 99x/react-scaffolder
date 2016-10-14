@@ -1,6 +1,6 @@
 # react-cli ![Dependency status](https://david-dm.org/99xt/react-cli.svg) [![Build Status](https://travis-ci.org/99xt/react-cli.svg?branch=master)](https://travis-ci.org/99xt/react-cli)
 
-[![Join the chat at https://gitter.im/react-cli-99xt/Lobby](https://badges.gitter.im/react-cli-99xt/Lobby.svg)](https://gitter.im/react-cli-99xt/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/react-scaffolder/Lobby](https://badges.gitter.im/react-scaffolder/Lobby.svg)](https://gitter.im/react-scaffolder/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Scaffolding tool for [React](https://facebook.github.io/react/)
 
@@ -17,6 +17,7 @@ $ npm install -g @99xt/react-cli
 Quickest way to get up and running with react-cli
 
 - Install the CLI - ```$ npm install -g react-scaffolder```
+
 - Initiate a project - ```$ react init awesome-project && cd awesome-project```
 - Install dependencies - ```$ npm install```
 - Run the build - ```$ npm run build && npm start```
