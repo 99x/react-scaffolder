@@ -230,7 +230,7 @@ program
 				    }
 				  }
 				]).then(function (answers) {
-					generate = new generateApp(); 
+					generate = new generateApp();
 					if(answers.propTypes === 'no') {
 						generate.createComponent(modulename, name, answers, null, function(status) {
 							if(status) {
@@ -268,6 +268,7 @@ program
 				});
 			}
 			else if(type === 'test') {
+				generate = new generateApp();
 				generate.createTest(modulename, name, function(status) {
 					const spinner = ora('creating test file \n').start();
 					spinner.text = 'test file created successfully';
