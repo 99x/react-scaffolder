@@ -3,9 +3,9 @@ const path = require('path');
 
 class init {
 	/**
- 	 * init command
+ 	 * Init command
  	 * @param {string} projectName - project name
-  	 * @param {string} options - additional options for the project example: eslint configuration
+  	 * @param {string} eslint - eslint configuration
 	 * @param {function} cb - callback for status return
 	 */
 	initialize(projectName, eslint, cb) {
@@ -55,12 +55,12 @@ class init {
 	copyCommonTemplates(projectName) {
 		return new Promise((resolve, reject) => {
 			fs.copyRecursive(path.join(__dirname, '..', 'templates/src'), path.join(projectName, 'src'), (err) => {
-		  	if (err) {
-		  		console.log(err);
-		  		reject(err);
-		  	} else {
-		  		resolve(true);
-		  	}
+		  		if (err) {
+		  			console.log(err);
+		  			reject(err);
+		  		} else {
+		  			resolve(true);
+		  		}
 			});
 		});
 	}
@@ -69,22 +69,19 @@ class init {
 	 * prototype function for copying a special template file
 	 * @param {string} projectName - project name
 	 * @param {string} file - name of the file to be copied
+	 * @param {boolean} dotFile - true if file is a dotfile, false if it's not 
 	 */
 	copyTemplate(projectName, file, dotFile) {
 		return new Promise((resolve, reject) => {
-			let destFile = null;
-			if (dotFile) {
-				destFile = '.' + file;
-			} else {
-				destFile = file;
-			}
-			fs.copy(path.join(__dirname, '..', 'templates', file), path.join(projectName, destFile), { replace: false }, (err) => {
+			// Add dot if file is a dotfile
+			let destFile = dotFile ? '.' + file : file
+			fs.copy(path.join(__dirname, '..', 'templates', file), path.join(projectName, destFile), {replace: false}, (err) => {
 		 		if (err) {
-		  		console.log(err);
-		  		reject(err);
-		  	} else {
-		  		resolve(true);
-		  	}
+		  			console.log(err);
+		  			reject(err);
+		  		} else {
+		  			resolve(true);
+		  		}
 			});
 		});	
 	}
@@ -110,4 +107,4 @@ class init {
 		});	
 	}	
 }
-module.exports = init
+module.exports = init;

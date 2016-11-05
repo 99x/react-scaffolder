@@ -2,7 +2,7 @@
  * check for duplicates in provided set of propNames
  * @param {string} propNames - propnames to compare
  */
-export default function checkDuplicates(propNames) {
+const checkDuplicates = function(propNames) {
 	let currentValue = null;
 	for (let count = 0; count <= propNames.length; count++) {
 		currentValue = propNames[count];
@@ -14,3 +14,5 @@ export default function checkDuplicates(propNames) {
 	}
 	return true;
 }
+
+module.exports = checkDuplicates;

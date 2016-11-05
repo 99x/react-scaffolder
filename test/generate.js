@@ -2,17 +2,18 @@
 
 var assert = require('chai').assert;
 var generateApp = require('../lib/generate');
+var path = require('path');
 
 var generate = new generateApp();
 
 describe('Create react components', function () {
 	it('should create a parent react component', function (done) {
 		var answers = {
-			"componentType": "child",
-			"propTypes": "yes",
-			"propNo": "2",
-			"propName": "first",
-			"propType": "number"
+			'componentType': 'child',
+			'propTypes': 'yes',
+			'propNo': '2',
+			'propName': 'first',
+			'propType': 'number'
 		};
 		var answersInner = {
 			first: 'string',

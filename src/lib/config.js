@@ -7,17 +7,14 @@ const path = require('path');
  * @param {string} value - value to be changed
  * @param {function} cb - callback
  */
-export default function configReactCliRc(key, value, cb) {	
+const configReactCliRc = function(key, value, cb) {	
 	fs.readFile(path.join(process.cwd(), '.reactclirc'), (err, buffer) => {
 		let jsonContent = JSON.parse(buffer.toString());
 		jsonContent[key] = value;
 		fs.writeFile(path.join(process.cwd(), '.reactclirc'), JSON.stringify(jsonContent, null, 2), 'utf-8', (err) => {
-			if(err) {
-				cb(true, null);
-			}
-			else {
-				cb(null, true);
-			}
+			err ? cb(true, null) : cb(null, true);
 		});
 	});
 }
+
+module.exports = configReactCliRc;

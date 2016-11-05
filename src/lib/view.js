@@ -40,8 +40,7 @@ const renderView = (type) => {
 			component.children.map((_component) => {
 				table.addRow(_component.path, _component.size);
 			});
-		}
-		else {
+		} else {
 			table.addRow(component.path, component.size);
 		}
 	});

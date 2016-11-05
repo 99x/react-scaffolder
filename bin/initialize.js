@@ -202,7 +202,7 @@ program.command('generate [type] [modulename] [name]').alias('g').description('g
 						return true;
 					}
 				}]).then(function (answers) {
-					generate = new generateApp();
+					var generate = new generateApp();
 					if (answers.propTypes === 'no') {
 						generate.createComponent(modulename, name, answers, null, function (status) {
 							if (status) {
@@ -238,7 +238,7 @@ program.command('generate [type] [modulename] [name]').alias('g').description('g
 				});
 			})();
 		} else if (type === 'test') {
-			generate = new generateApp();
+			var generate = new generateApp();
 			generate.createTest(modulename, name, function (status) {
 				var spinner = ora('creating test file \n').start();
 				spinner.text = 'test file created successfully';
