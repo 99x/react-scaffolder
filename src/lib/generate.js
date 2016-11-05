@@ -26,32 +26,28 @@ class generate {
 	 */
 	generateComponent(type, module, componentName, answers, answersInner, cb) {
 		try {
+			let exists;
 			if (componentName !== undefined) {
-				const exists = fs.accessSync(path.join(process.cwd(), getSourceDirectory(), 'components', module, componentName), fs.F_OK);
-				cb(`${componentName}.react.js already exists`);
-				return;
+				exists = fs.accessSync(path.join(process.cwd(), getSourceDirectory(), 'components', module, componentName), fs.F_OK);
 			} else {
-				const exists = fs.accessSync(path.join(process.cwd(), getSourceDirectory(), 'components', module + '.react.js'), fs.F_OK);
-				cb(`${componentName}.react.js already exists`);
-				return;
+				exists = fs.accessSync(path.join(process.cwd(), getSourceDirectory(), 'components', module + '.react.js'), fs.F_OK);
 			}
-		} catch(e) {
+			cb(`${componentName}.react.js already exists`);
+			return;
+		} catch (e) {
 			const file = fs.readFileSync(path.join(__dirname, '..', `templates/components/${type}-component.react.js`), 'utf-8');
 			const re = /<name>/gi;
 			if (componentName !== undefined) {
 				try {
+					fs.mkdirSync(path.join(process.cwd(), getSourceDirectory(), 'components', module), 755);
+					const _modFile = file.replace(re, componentName);
 					if (answers.propTypes === 'no') {
-						fs.mkdirSync(path.join(process.cwd(), getSourceDirectory(), 'components', module), 755);
-						const _modFile = file.replace(re, componentName);
 						fs.writeFileSync(path.join(process.cwd(), getSourceDirectory(), 'components', module, componentName + '.react.js'), _modFile, 'utf-8');
-						cb(true);
 					} else {
-						fs.mkdirSync(path.join(process.cwd(), getSourceDirectory(), 'components', module), 755);
-						const _modFile = file.replace(re, componentName);
 						const __modFile = this.createModFile(_modFile, answersInner, componentName);
-						fs.writeFileSync(path.join(process.cwd(), getSourceDirectory(), 'components', module, componentName + '.react.js'), __modFile, 'utf-8');
-						cb(true);					
+						fs.writeFileSync(path.join(process.cwd(), getSourceDirectory(), 'components', module, componentName + '.react.js'), __modFile, 'utf-8');				
 					}
+					cb(true);
 				} catch (ex) {
 					if (ex.syscall == 'open') {
 						cb('module doesn\'t exist');
@@ -125,15 +121,14 @@ class generate {
  	 */
 	createTest(module, testName, cb) {
 		try {
+			let exists;
 			if (testName !== undefined) {
-				const existsModule = fs.accessSync(path.join(process.cwd(), getSourceDirectory(), '__tests__', module, testName), fs.F_OK);
-				cb(`${componentName}.js test file already exists`);
-				return;
+				exists = fs.accessSync(path.join(process.cwd(), getSourceDirectory(), '__tests__', module, testName), fs.F_OK);
 			} else {
-				const exists = fs.accessSync(path.join(process.cwd(), getSourceDirectory(), '__tests__', module + '.js'), fs.F_OK);
-				cb(`${componentName}.js test file already exists`);
-				return;
+				exists = fs.accessSync(path.join(process.cwd(), getSourceDirectory(), '__tests__', module + '.js'), fs.F_OK);
 			}
+			cb(`${componentName}.js test file already exists`);
+			return;
 		} catch (e) {
 			const file = fs.readFileSync(path.join(__dirname, '..', `templates/src/__tests__/app.js`), 'utf-8');
 			if (testName !== undefined) {
