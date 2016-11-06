@@ -10,15 +10,20 @@ const getSourceDirectory = require('./source');
  */
 const viewDirectoryStructure = (component, test, cb) => {
 	const src = getSourceDirectory();
+	if (!src) {
+		// Seems .reactclirc doesn't exist.
+		cb({success: false, msg: '.reactclirc doesn\'t exist'});
+		return;
+	}
 	if (component) {
 		const treeComponents = dirTree(`${src}/components`);
 		renderView(treeComponents);
-		cb(true);
+		cb({success: true});
 	}
 	if (test) {
 		const treeTests = dirTree(`${src}/__tests__`);
 		renderView(treeTests);
-		cb(true);
+		cb({success: true});
 	}
 }
 

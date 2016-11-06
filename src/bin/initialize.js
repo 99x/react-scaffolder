@@ -89,31 +89,33 @@ program
   	const spinner = ora('loading directory structure \n').start();
   	if (options.component && options.test) {	
   		viewDirectoryStructure(true, true, (status) => {
-  			if (status) {
+  			if (status.success) {
   				spinner.text = 'successfully loaded !';
   				spinner.succeed();
   			} else {
-  				spinner.fail();
-  			}
+					spinner.text = status.msg;
+					spinner.fail();
+				}
   		});
   	} else if (options.component) {
   		viewDirectoryStructure(true, false, (status) => {
-  			if (status) {
+  			if (status.success) {
   				spinner.text = 'successfully loaded !';
   				spinner.succeed();
   			} else {
-  				spinner.text = 'successfully loaded !';
-  				spinner.fail();
-  			}
+					spinner.text = status.msg;
+					spinner.fail();
+				}
   		});
   	} else if (options.test) {
   		viewDirectoryStructure(false, true, (status) => {
-  			if (status) {
+  			if (status.success) {
   				spinner.text = 'successfully loaded !';
   				spinner.succeed();
   			} else {
-  				spinner.fail();
-  			}
+					spinner.text = status.msg;
+					spinner.fail();
+				}
   		});
   	} else if (!options.component && !options.test) {
   		spinner.text = 'provide options';
@@ -223,10 +225,14 @@ program
 					let generate = new generateApp();
 					if (answers.propTypes === 'no') {
 						generate.createComponent(modulename, name, answers, null, (status) => {
-							if (status) {
+							if (status.success) {
 								const spinner = ora('loading directory structure \n').start();
 								spinner.text = 'component created successfully';
 								spinner.succeed();
+							} else {
+								const spinner = ora('').start();
+								spinner.text = status.msg;
+								spinner.fail();
 							}
 						});
 					}
@@ -247,10 +253,14 @@ program
 						inquirer.prompt(opts)
 							.then((answersInner) => {
 								generate.createComponent(modulename, name, answers, answersInner, (status) => {
-									if (status) {
+									if (status.success) {
 										const spinner = ora('loading directory structure \n').start();
 										spinner.text = 'component created successfully';
 										spinner.succeed();
+									} else {
+										const spinner = ora('').start();
+										spinner.text = status.msg;
+										spinner.fail();
 									}
 								});
 							});
@@ -259,9 +269,15 @@ program
 			} else if (type === 'test') {
 				let generate = new generateApp();
 				generate.createTest(modulename, name, (status) => {
-					const spinner = ora('creating test file \n').start();
-					spinner.text = 'test file created successfully';
-					spinner.succeed();
+					if (status.success) {
+						const spinner = ora('creating test file \n').start();
+						spinner.text = 'test file created successfully';
+						spinner.succeed();
+					}	else {
+						const spinner = ora('').start();
+						spinner.text = status.msg;
+						spinner.fail();
+					}
 				});
 			}
     } else {

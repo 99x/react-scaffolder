@@ -18,7 +18,7 @@ describe('Create react components', () => {
 			last: 'string' 
 		};
 	  	generate.createComponent('core', 'sample', answers, answersInner, (status) => {
-	  		assert.equal(status, 'module doesn\'t exist');
+	  		assert.equal(status.success, false);
 	  		done();
 	  	});
 	});

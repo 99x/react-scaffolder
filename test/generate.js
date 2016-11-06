@@ -20,7 +20,7 @@ describe('Create react components', function () {
 			last: 'string'
 		};
 		generate.createComponent('core', 'sample', answers, answersInner, function (status) {
-			assert.equal(status, 'module doesn\'t exist');
+			assert.equal(status.success, false);
 			done();
 		});
 	});

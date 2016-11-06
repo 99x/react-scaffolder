@@ -79,29 +79,31 @@ program.command('view').alias('v').option('-c, --component', 'view component onl
 	var spinner = ora('loading directory structure \n').start();
 	if (options.component && options.test) {
 		viewDirectoryStructure(true, true, function (status) {
-			if (status) {
+			if (status.success) {
 				spinner.text = 'successfully loaded !';
 				spinner.succeed();
 			} else {
+				spinner.text = status.msg;
 				spinner.fail();
 			}
 		});
 	} else if (options.component) {
 		viewDirectoryStructure(true, false, function (status) {
-			if (status) {
+			if (status.success) {
 				spinner.text = 'successfully loaded !';
 				spinner.succeed();
 			} else {
-				spinner.text = 'successfully loaded !';
+				spinner.text = status.msg;
 				spinner.fail();
 			}
 		});
 	} else if (options.test) {
 		viewDirectoryStructure(false, true, function (status) {
-			if (status) {
+			if (status.success) {
 				spinner.text = 'successfully loaded !';
 				spinner.succeed();
 			} else {
+				spinner.text = status.msg;
 				spinner.fail();
 			}
 		});
@@ -205,10 +207,14 @@ program.command('generate [type] [modulename] [name]').alias('g').description('g
 					var generate = new generateApp();
 					if (answers.propTypes === 'no') {
 						generate.createComponent(modulename, name, answers, null, function (status) {
-							if (status) {
+							if (status.success) {
 								var spinner = ora('loading directory structure \n').start();
 								spinner.text = 'component created successfully';
 								spinner.succeed();
+							} else {
+								var _spinner = ora('').start();
+								_spinner.text = status.msg;
+								_spinner.fail();
 							}
 						});
 					} else {
@@ -227,10 +233,14 @@ program.command('generate [type] [modulename] [name]').alias('g').description('g
 						}
 						inquirer.prompt(opts).then(function (answersInner) {
 							generate.createComponent(modulename, name, answers, answersInner, function (status) {
-								if (status) {
+								if (status.success) {
 									var spinner = ora('loading directory structure \n').start();
 									spinner.text = 'component created successfully';
 									spinner.succeed();
+								} else {
+									var _spinner2 = ora('').start();
+									_spinner2.text = status.msg;
+									_spinner2.fail();
 								}
 							});
 						});
@@ -240,9 +250,15 @@ program.command('generate [type] [modulename] [name]').alias('g').description('g
 		} else if (type === 'test') {
 			var generate = new generateApp();
 			generate.createTest(modulename, name, function (status) {
-				var spinner = ora('creating test file \n').start();
-				spinner.text = 'test file created successfully';
-				spinner.succeed();
+				if (status.success) {
+					var spinner = ora('creating test file \n').start();
+					spinner.text = 'test file created successfully';
+					spinner.succeed();
+				} else {
+					var _spinner3 = ora('').start();
+					_spinner3.text = status.msg;
+					_spinner3.fail();
+				}
 			});
 		}
 	} else {
