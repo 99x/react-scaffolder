@@ -1,6 +1,5 @@
 const assert = require('chai').assert;
 const generateApp = require('../lib/generate');
-const path = require('path');
 
 let generate = new generateApp();
 
@@ -17,9 +16,9 @@ describe('Create react components', () => {
 			first: 'string', 
 			last: 'string' 
 		};
-	  	generate.createComponent('core', 'sample', answers, answersInner, (status) => {
-	  		assert.equal(status.success, false);
-	  		done();
-	  	});
+		generate.createComponent('core', 'sample', answers, answersInner, (status) => {
+			assert.equal(status.success, false);
+			done();
+		});
 	});
 });

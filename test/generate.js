@@ -2,7 +2,6 @@
 
 var assert = require('chai').assert;
 var generateApp = require('../lib/generate');
-var path = require('path');
 
 var generate = new generateApp();
 

@@ -28,49 +28,49 @@ class generate {
 	generateComponent(type, module, componentName, answers, answersInner, cb) {
 		const sourceDirectory = getSourceDirectory();
 		if (!sourceDirectory) {
-			// Seems .reactclirc doesn't exist.
-			cb({success: false, msg: '.reactclirc doesn\'t exist'});
+			// Seems .reactclirc doesn't exist or client isn't set
+			cb({success: false, msg: '.reactclirc doesn\'t exist or client isn\'t set in .reactclirc'});
 			return;
 		}
+		/**
+		 * exists variable
+		 * True if file exists, false if not.
+		 * @type {boolean}
+		 */
 		let exists;
 		if (componentName !== undefined) {
 			exists = fs.existsSync(path.join(process.cwd(), sourceDirectory, 'components', module, componentName + '.react.js'), fs.F_OK);
 		} else {
 			exists = fs.existsSync(path.join(process.cwd(), sourceDirectory, 'components', module + '.react.js'), fs.F_OK);
 		}
-		if (!exists) {
-			const file = fs.readFileSync(path.join(__dirname, '..', `templates/components/${type}-component.react.js`), 'utf-8');
-			const re = /<name>/gi;
-			if (componentName !== undefined) {
-				try {
-					const moduleDirExists = fs.existsSync(path.join(process.cwd(), sourceDirectory, 'components', module), fs.F_OK);
-					if (!moduleDirExists) {
-						fs.mkdirSync(path.join(process.cwd(), sourceDirectory, 'components', module), 755);
-					}
-					const _modFile = file.replace(re, componentName);
-					if (answers.propTypes === 'no') {
-						fs.writeFileSync(path.join(process.cwd(), sourceDirectory, 'components', module, componentName + '.react.js'), _modFile, 'utf-8');
-					} else {
-						const __modFile = this.createModFile(_modFile, answersInner, componentName);
-						fs.writeFileSync(path.join(process.cwd(), sourceDirectory, 'components', module, componentName + '.react.js'), __modFile, 'utf-8');				
-					}
-					cb({success: true});
-				} catch (ex) {
-					cb({success: false, msg: ex});
-				}
-			} else {
-				try {
-					const _modFile = file.replace(re, module);
-					const __modFile = this.createModFile(_modFile, answersInner, module);
-					fs.writeFileSync(path.join(process.cwd(), sourceDirectory, 'components', module + '.react.js'), __modFile, 'utf-8');
-					cb({success: true});
-				} catch (ex) {
-					cb({success: false, msg: ex});
-				}
-			}
-		} else {
+		// Fail if file already exists
+		if (exists) {
 			cb({success: false, msg: `${componentName || module}.react.js already exists`})
 			return;	
+		}
+		const file = fs.readFileSync(path.join(__dirname, '..', `templates/components/${type}-component.react.js`), 'utf-8');
+		const re = /<name>/gi;
+		try {
+			if (componentName !== undefined) {
+				const moduleDirExists = fs.existsSync(path.join(process.cwd(), sourceDirectory, 'components', module), fs.F_OK);
+				if (!moduleDirExists) {
+					fs.mkdirSync(path.join(process.cwd(), sourceDirectory, 'components', module), 755);
+				}
+				const _modFile = file.replace(re, componentName);
+				if (answers.propTypes === 'no') {
+					fs.writeFileSync(path.join(process.cwd(), sourceDirectory, 'components', module, componentName + '.react.js'), _modFile, 'utf-8');
+				} else {
+					const __modFile = this.createModFile(_modFile, answersInner, componentName);
+					fs.writeFileSync(path.join(process.cwd(), sourceDirectory, 'components', module, componentName + '.react.js'), __modFile, 'utf-8');				
+				}
+			} else {
+				const _modFile = file.replace(re, module);
+				const __modFile = this.createModFile(_modFile, answersInner, module);
+				fs.writeFileSync(path.join(process.cwd(), sourceDirectory, 'components', module + '.react.js'), __modFile, 'utf-8');
+			}
+			cb({success: true});
+		} catch (e) {
+			cb({success: false, msg: e});
 		}
 	}
 
@@ -125,40 +125,40 @@ class generate {
 	createTest(module, testName, cb) {
 		const sourceDirectory = getSourceDirectory();
 		if (!sourceDirectory) {
-			// Seems .reactclirc doesn't exist.
-			cb({success: false, msg: '.reactclirc doesn\'t exist'});
+			// Seems .reactclirc doesn't exist or client isn't set
+			cb({success: false, msg: '.reactclirc doesn\'t exist or client isn\'t set in .reactclirc'});
 			return;
 		}
+		/**
+		 * exists variable
+		 * True if file exists, false if not.
+		 * @type {boolean}
+		 */
 		let exists;
 		if (testName !== undefined) {
 			exists = fs.existsSync(path.join(process.cwd(), sourceDirectory, '__tests__', module, testName + '.js'), fs.F_OK);
 		} else {
 			exists = fs.existsSync(path.join(process.cwd(), sourceDirectory, '__tests__', module + '.js'), fs.F_OK);
 		}
-		if (!exists) {
-			const file = fs.readFileSync(path.join(__dirname, '..', `templates/src/__tests__/app.js`), 'utf-8');
-			if (testName !== undefined) {
-				try {
-					const moduleTestDirExists = fs.existsSync(path.join(process.cwd(), sourceDirectory, '__tests__', module), fs.F_OK);
-					if (!moduleTestDirExists) {
-						fs.mkdirSync(path.join(process.cwd(), sourceDirectory, '__tests__', module), 755);
-					}
-					fs.writeFileSync(path.join(process.cwd(), sourceDirectory, '__tests__', module, testName + '.js'), file, 'utf-8');
-					cb({success: true});
-				} catch (ex) {
-					cb({success: false, msg: ex});
-				}
-			} else {
-				try {
-					fs.writeFileSync(path.join(process.cwd(), sourceDirectory, '__tests__', module + '.js'), file, 'utf-8');
-					cb({success: true});
-				} catch (ex) {
-					cb({success: false, msg: ex});
-				}
-			}
-		} else {
+		// Fail if file already exists
+		if (exists) {
 			cb({success: false, msg: `${testName || module}.react.js already exists`})
 			return;	
+		}
+		const file = fs.readFileSync(path.join(__dirname, '..', `templates/src/__tests__/app.js`), 'utf-8');
+		try {
+			if (testName !== undefined) {
+				const moduleTestDirExists = fs.existsSync(path.join(process.cwd(), sourceDirectory, '__tests__', module), fs.F_OK);
+				if (!moduleTestDirExists) {
+					fs.mkdirSync(path.join(process.cwd(), sourceDirectory, '__tests__', module), 755);
+				}
+				fs.writeFileSync(path.join(process.cwd(), sourceDirectory, '__tests__', module, testName + '.js'), file, 'utf-8');
+			} else {
+				fs.writeFileSync(path.join(process.cwd(), sourceDirectory, '__tests__', module + '.js'), file, 'utf-8');
+			}
+			cb({success: true});
+		} catch (e) {
+			cb({success: false, msg: e});
 		}
 	}
 }

@@ -87,40 +87,20 @@ program
   .option('-t, --test', 'view test only')
   .action((options) => {
   	const spinner = ora('loading directory structure \n').start();
-  	if (options.component && options.test) {	
-  		viewDirectoryStructure(true, true, (status) => {
-  			if (status.success) {
-  				spinner.text = 'successfully loaded !';
-  				spinner.succeed();
-  			} else {
-					spinner.text = status.msg;
-					spinner.fail();
-				}
-  		});
-  	} else if (options.component) {
-  		viewDirectoryStructure(true, false, (status) => {
-  			if (status.success) {
-  				spinner.text = 'successfully loaded !';
-  				spinner.succeed();
-  			} else {
-					spinner.text = status.msg;
-					spinner.fail();
-				}
-  		});
-  	} else if (options.test) {
-  		viewDirectoryStructure(false, true, (status) => {
-  			if (status.success) {
-  				spinner.text = 'successfully loaded !';
-  				spinner.succeed();
-  			} else {
-					spinner.text = status.msg;
-					spinner.fail();
-				}
-  		});
-  	} else if (!options.component && !options.test) {
+		if (!options.component && !options.test) {
   		spinner.text = 'provide options';
   		spinner.fail();
-  	}
+		} else {
+			viewDirectoryStructure(!!options.component, !!options.test, (status) => {
+				if (status.success) {
+					spinner.text = 'successfully loaded !';
+  				spinner.succeed();
+				} else {
+					spinner.text = status.msg;
+					spinner.fail();
+				}
+			});
+		}
   });
 
 /**

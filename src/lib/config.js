@@ -7,7 +7,7 @@ const path = require('path');
  * @param {string} value - value to be changed
  * @param {function} cb - callback
  */
-const configReactCliRc = function(key, value, cb) {	
+const configReactCliRc = (key, value, cb) => {	
 	fs.readFile(path.join(process.cwd(), '.reactclirc'), (err, buffer) => {
 		let jsonContent = JSON.parse(buffer.toString());
 		jsonContent[key] = value;

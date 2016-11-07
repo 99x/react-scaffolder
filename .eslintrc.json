@@ -2,6 +2,7 @@
     "extends": "airbnb",
     "installedESLint": true,
     "rules": {
-        "indent": "off"
+        "indent": "off",
+        "linebreak-style": "off"
     }
 }

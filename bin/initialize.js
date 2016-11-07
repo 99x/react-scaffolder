@@ -77,39 +77,19 @@ program.command('config [key] [value]').alias('c').action(function (key, value) 
  */
 program.command('view').alias('v').option('-c, --component', 'view component only').option('-t, --test', 'view test only').action(function (options) {
 	var spinner = ora('loading directory structure \n').start();
-	if (options.component && options.test) {
-		viewDirectoryStructure(true, true, function (status) {
-			if (status.success) {
-				spinner.text = 'successfully loaded !';
-				spinner.succeed();
-			} else {
-				spinner.text = status.msg;
-				spinner.fail();
-			}
-		});
-	} else if (options.component) {
-		viewDirectoryStructure(true, false, function (status) {
-			if (status.success) {
-				spinner.text = 'successfully loaded !';
-				spinner.succeed();
-			} else {
-				spinner.text = status.msg;
-				spinner.fail();
-			}
-		});
-	} else if (options.test) {
-		viewDirectoryStructure(false, true, function (status) {
-			if (status.success) {
-				spinner.text = 'successfully loaded !';
-				spinner.succeed();
-			} else {
-				spinner.text = status.msg;
-				spinner.fail();
-			}
-		});
-	} else if (!options.component && !options.test) {
+	if (!options.component && !options.test) {
 		spinner.text = 'provide options';
 		spinner.fail();
+	} else {
+		viewDirectoryStructure(!!options.component, !!options.test, function (status) {
+			if (status.success) {
+				spinner.text = 'successfully loaded !';
+				spinner.succeed();
+			} else {
+				spinner.text = status.msg;
+				spinner.fail();
+			}
+		});
 	}
 });
 

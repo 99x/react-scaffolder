@@ -1,3 +1,5 @@
+const fs = require('fs.extra');
+const path = require('path');
 const dirTree = require('directory-tree');
 const AsciiTable = require('ascii-table');
 const getSourceDirectory = require('./source');
@@ -9,21 +11,35 @@ const getSourceDirectory = require('./source');
  * @param {function} cb - callback for status return
  */
 const viewDirectoryStructure = (component, test, cb) => {
-	const src = getSourceDirectory();
-	if (!src) {
-		// Seems .reactclirc doesn't exist.
-		cb({success: false, msg: '.reactclirc doesn\'t exist'});
+	const sourceDirectory = getSourceDirectory();
+	if (!sourceDirectory) {
+		// Seems .reactclirc doesn't exist or client isn't set
+		cb({success: false, msg: '.reactclirc doesn\'t exist or client isn\'t set in .reactclirc'});
 		return;
 	}
 	if (component) {
-		const treeComponents = dirTree(`${src}/components`);
-		renderView(treeComponents);
-		cb({success: true});
+		// Make sure directory exists
+		const exists = fs.existsSync(path.join(process.cwd(), sourceDirectory, 'components'), fs.F_OK);;
+		if (exists) {
+			const treeComponents = dirTree(`${sourceDirectory}/components`);
+			renderView(treeComponents);
+			cb({success: true});
+		} else {
+			cb({success: false, msg: 'components directory doesn\'t exist!'});
+			return;
+		}
 	}
 	if (test) {
-		const treeTests = dirTree(`${src}/__tests__`);
-		renderView(treeTests);
-		cb({success: true});
+		// Make sure directory actually exists
+		const exists = fs.existsSync(path.join(process.cwd(), sourceDirectory, '__tests__'), fs.F_OK);;
+		if (exists) {
+			const treeTests = dirTree(`${sourceDirectory}/__tests__`);
+			renderView(treeTests);
+			cb({success: true});
+		} else {
+			cb({success: false, msg: '__tests__ directory doesn\'t exist!'});
+			return;
+		}
 	}
 }
 
