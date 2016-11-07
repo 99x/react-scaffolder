@@ -1,11 +1,18 @@
-const assert = require('chai').assert;
-const checkSpaces = require('../lib/utils/checkspaces');
+'use strict';
 
-describe('Check spaces API', function() {
-	it('should return array without spaces', function(done) {
-		let propNames = ['firstname', 'lastname', ' '];
-		//needs to be fixed
-		assert.equal(checkSpaces(propNames).length, 3);
+var _checkspaces = require('../lib/utils/checkspaces');
+
+var _checkspaces2 = _interopRequireDefault(_checkspaces);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var assert = require('chai').assert;
+
+
+describe('Check spaces API', function () {
+	it('should return array without spaces', function (done) {
+		var propNames = ['firstname', 'lastname', ' '];
+		assert.equal((0, _checkspaces2.default)(propNames).length, 2);
 		done();
 	});
 });
