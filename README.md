@@ -4,7 +4,7 @@
 
 Scaffolding tool for [React](https://facebook.github.io/react/)
 
-react-cli is a command line interface which brings smooth developer experience (DX) for React devs. react-cli provides a better way to generate react projects with [react-boilerplate](https://github.com/99xt/react-boilerplate). With this tool it's possible to continue generating boilerplate code with heavy customizations once a project is initiated.
+react-scaffolder is a command line interface which brings smooth developer experience (DX) for React devs. react-scaffolder provides a better way to generate react projects with [react-boilerplate](https://github.com/99xt/react-boilerplate). With this tool it's possible to continue generating boilerplate code with heavy customizations once a project is initiated.
 
 ## Install
 
@@ -14,7 +14,7 @@ $ npm install -g react-scaffolder
 
 ## Quick Start
 
-Quickest way to get up and running with react-cli
+Quickest way to get up and running with react-scaffolder
 
 - Install the CLI - ```$ npm install -g react-scaffolder```
 
