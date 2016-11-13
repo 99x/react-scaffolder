@@ -1,4 +1,8 @@
 {
-    "extends": "google",
-    "installedESLint": true
+    "extends": "airbnb",
+    "installedESLint": true,
+    "rules": {
+        "indent": "off",
+        "linebreak-style": "off"
+    }
 }
