@@ -12,6 +12,12 @@ react-scaffolder is a command line interface which brings smooth developer exper
 $ npm install -g react-scaffolder
 ```
 
+or if you're using [yarn](https://yarnpkg.com),
+
+```
+$ yarn global add react-scaffolder
+```
+
 ## Quick Start
 
 Quickest way to get up and running with react-scaffolder
