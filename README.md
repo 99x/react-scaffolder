@@ -1,4 +1,4 @@
-# react-scaffolder ![Dependency status](https://david-dm.org/99xt/react-cli.svg) [![Build Status](https://travis-ci.org/99xt/react-cli.svg?branch=master)](https://travis-ci.org/99xt/react-cli)
+# react-scaffolder ![Dependency status](https://david-dm.org/99xt/react-cli.svg) [![Build Status](https://travis-ci.org/99xt/react-scaffolder.svg?branch=master)](https://travis-ci.org/99xt/react-scaffolder)
 
 [![Join the chat at https://gitter.im/react-scaffolder/Lobby](https://badges.gitter.im/react-scaffolder/Lobby.svg)](https://gitter.im/react-scaffolder/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -10,6 +10,12 @@ react-scaffolder is a command line interface which brings smooth developer exper
 
 ```
 $ npm install -g react-scaffolder
+```
+
+or if you're using [yarn](https://yarnpkg.com),
+
+```
+$ yarn global add react-scaffolder
 ```
 
 ## Quick Start
