@@ -126,6 +126,17 @@ This specifies that React components are placed in `src/components` directory.
 - Create test files
 - Interactive view of the component structure
 
+## Future work
+
+<img src="http://i.imgur.com/ev03Gqg.png" width="100%"/>
+
+Above is the architecture proposed to decompose existing APIs in react-scaffolder. According to the architecture following components together will form the react scaffolder eco-system.
+- React CLI
+- React generator core
+- React generator addons
+- Electron client
+- Middlware and web client
+
 ## References
 
 - [What is scaffolding ?](https://en.wikipedia.org/wiki/Scaffold_(programming))
