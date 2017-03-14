@@ -1,6 +1,6 @@
 {
     "name": "react-scaffolder",
-    "version": "0.3.1",
+    "version": "0.3.2",
     "description": "Scaffolding tool for React",
     "bin": {
         "react": "./bin/initialize.js"
