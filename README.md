@@ -133,8 +133,8 @@ This specifies that React components are placed in `src/components` directory.
 - [What is scaffolding ?](https://en.wikipedia.org/wiki/Scaffold_(programming))
 - [What is a CLI ?](https://www.techopedia.com/definition/3337/command-line-interface-cli)
 - [Why good UX in CLIs matters](https://trevorsullivan.net/2016/07/11/designing-command-line-tools/)
-- Projects with similar objectives
- - [Yeoman](http://yeoman.io/)
+- Projects which facilitate similar objectives
+  - [Yeoman](http://yeoman.io/)
 
 ## Contributor guidelines
 
