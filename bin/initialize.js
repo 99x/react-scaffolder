@@ -21,19 +21,19 @@ program.version(packageVersion);
  * command for initializing a project
  */
 program
-	.command("init [projectname]")
+	.command("init [projectname] [gitrepository]")
 	.alias("i")
 	.description("initialize React project")
 	.option("-l, --eslint", "eslint required or not ?")
-	.action(function(projectname, options) {
+	.action(function(projectname, gitrepository, options) {
 		if (projectname === undefined) {
 			console.log("provide a project name");
 			return;
 		} else {
 			const spinner = ora("creating directory structure").start();
-			init.initialize(projectname, options.eslint, function initProject(
-				res
-			) {
+			init.initialize(projectname, gitrepository, options.eslint,
+				function initProject(res) {
+					console.log('res', res);
 				if (res) {
 					setTimeout(() => {
 						spinner.text = "application created successfully";
@@ -41,10 +41,10 @@ program
 						console.log(
 							`\t$ cd ${projectname}\n \t$ npm install \n \tHappy hacking ♥`
 						);
-					}, 1000);
+					}, 1);
 				} else {
 					setTimeout(() => {
-						spinner.text = "something went wrong !";
+						spinner.text = "something went wrong!";
 						spinner.fail();
 					}, 1000);
 				}
