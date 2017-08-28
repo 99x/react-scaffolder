@@ -31,9 +31,9 @@ program
 			return;
 		} else {
 			const spinner = ora("creating directory structure").start();
+
 			init.initialize(projectname, gitrepository, options.eslint,
 				function initProject(res) {
-					console.log('res', res);
 				if (res) {
 					setTimeout(() => {
 						spinner.text = "application created successfully";
@@ -41,7 +41,8 @@ program
 						console.log(
 							`\t$ cd ${projectname}\n \t$ npm install \n \tHappy hacking ♥`
 						);
-					}, 1);
+					}, 1000);
+					
 				} else {
 					setTimeout(() => {
 						spinner.text = "something went wrong!";
