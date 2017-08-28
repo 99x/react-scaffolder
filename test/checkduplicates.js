@@ -7,6 +7,7 @@ describe("Check duplicates API", function() {
 		assert.equal(checkDuplicates(propNames), false);
 		done();
 	});
+	
 	it("should return true for clean propNames", function(done) {
 		let propNames = ["firstname", "lastname"];
 		assert.equal(checkDuplicates(propNames), true);
