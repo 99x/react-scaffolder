@@ -4,9 +4,9 @@ const rmdir = require("rimraf");
 
 init = new initApp();
 
-describe("Initialize React application", function() {
-	it("should initialize react app", function(done) {
-		init.initialize("../test-project", undefined, function(result) {
+describe("Initialize React application", function () {
+	it("should initialize react app", function (done) {
+		init.initialize("../test-project", undefined, undefined, function (result) {
 			rmdir("../test-project", err => {
 				if (err) throw new Error("failed");
 				else {
@@ -17,8 +17,8 @@ describe("Initialize React application", function() {
 		});
 	});
 
-	it("should initialize react app with eslint configuration", function(done) {
-		init.initialize("../test-project", true, function(result) {
+	it("should initialize react app with eslint configuration", function (done) {
+		init.initialize("../test-project", undefined, true, function (result) {
 			rmdir("../test-project", err => {
 				if (err) throw new Error("failed");
 				else {
@@ -28,4 +28,17 @@ describe("Initialize React application", function() {
 			});
 		});
 	});
+
+	it("should initialize react app with git repository without eslint configuration", function (done) {
+		init.initialize("../test-project", 'https://github.com/react-boilerplate/react-boilerplate', undefined, function (result) {
+			rmdir("../test-project", err => {
+				if (err) throw new Error("failed");
+				else {
+					assert.equal(result, true);
+					done();
+				}
+			});
+		});
+	});
+
 });
