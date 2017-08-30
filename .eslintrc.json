@@ -1,4 +1,4 @@
 {
-    "extends": "google",
+    "extends": ["eslint:recommended", "google"],
     "installedESLint": true
 }
