@@ -27,17 +27,21 @@ Quickest way to get up and running with react-scaffolder
 - Initiate a project - ```$ react init awesome-project && cd awesome-project```
 - Install dependencies - ```$ npm install```
 - Run the build - ```$ npm run build && npm start```
-- Instantly create React components - ```$ react g component feed footer``` 
+- Instantly create React components - ```$ react g component feed footer```
 - Check with interactive view - ```$ react v -c```
 
 ## Usage
 
-### react init [name]
+### react init [name] [git repository URL]
 *alias: i*
 
 #### name
 
 Project name.
+
+#### Git repository URL (optional)
+
+Git repository URL that you need to use as the template.
 
 #### Options
 
@@ -111,7 +115,7 @@ Create react-cli configuration file, `.reactclirc` (similar to `.babelrc`). Add 
 
 ```
 {
-	"client": "src" 
+	"client": "src"
 }
 ```
 
