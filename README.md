@@ -36,12 +36,16 @@ Quickest way to get up and running with react-scaffolder
 
 ## Usage
 
-### react init [name]
+### react init [name] [git repository URL]
 *alias: i*
 
 #### name
 
 Project name.
+
+#### Git repository URL (optional)
+
+Git repository URL that you need to use as the template.
 
 #### Options
 
