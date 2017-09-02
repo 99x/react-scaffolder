@@ -1,3 +1,7 @@
+![logo](https://user-images.githubusercontent.com/7692626/29966125-1d9e5ba6-8f2e-11e7-9155-c6cdc3c61be2.png)
+
+
+
 # react-scaffolder ![Dependency status](https://david-dm.org/99xt/react-cli.svg) [![Build Status](https://travis-ci.org/99xt/react-scaffolder.svg?branch=master)](https://travis-ci.org/99xt/react-scaffolder)
 
 [![Join the chat at https://gitter.im/react-scaffolder/Lobby](https://badges.gitter.im/react-scaffolder/Lobby.svg)](https://gitter.im/react-scaffolder/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
