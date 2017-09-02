@@ -1,32 +1,30 @@
-const assert = require('chai').assert;
-const createComponent = require('../lib/generate').createComponent;
+const assert = require("chai").assert;
+const generateApp = require("../lib/generate");
 
-describe('Create react components', function() {
-	it('should create a parent react component', function(done) {
+generate = new generateApp();
+
+describe("Create react components", function() {
+	it("should create a parent react component", function(done) {
 		const answers = {
-			"componentType": "child",
-			"propTypes": "yes",
-			"propNo": "2",
-			"propName": "first",
-			"propType": "number"
+			componentType: "child",
+			propTypes: "yes",
+			propNo: "2",
+			propName: "first",
+			propType: "number"
 		};
-	  const res = createComponent('core', 'sample', answers);
-	  assert.equal(res, true);
-	  done();
-	});
-	it('should not create a parent react component', function(done) {
-	  const answers = {};
-	  const res = createComponent('core', 'sample', answers);
-	  assert.equal(res, false);
-	  done();
-	});
-	it('should not create a react component', function(done) {
-		const answers = {
-			"componentType": "child",
-			"propTypes": "no"
+		const answersInner = {
+			first: "string",
+			last: "string"
 		};
-	  const res = createComponent('non-existing-module', 'sample', answers);
-	  assert.equal(res, false);
-	  done();
+		generate.createComponent(
+			"core",
+			"sample",
+			answers,
+			answersInner,
+			function(status) {
+				assert.equal(status, "module doesn't exist");
+				done();
+			}
+		);
 	});
 });
