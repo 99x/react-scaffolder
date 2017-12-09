@@ -1,3 +1,7 @@
+![logo](https://user-images.githubusercontent.com/7692626/29966125-1d9e5ba6-8f2e-11e7-9155-c6cdc3c61be2.png)
+
+
+
 # react-scaffolder ![Dependency status](https://david-dm.org/99xt/react-cli.svg) [![Build Status](https://travis-ci.org/99xt/react-scaffolder.svg?branch=master)](https://travis-ci.org/99xt/react-scaffolder)
 
 [![Join the chat at https://gitter.im/react-scaffolder/Lobby](https://badges.gitter.im/react-scaffolder/Lobby.svg)](https://gitter.im/react-scaffolder/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -27,17 +31,21 @@ Quickest way to get up and running with react-scaffolder
 - Initiate a project - ```$ react init awesome-project && cd awesome-project```
 - Install dependencies - ```$ npm install```
 - Run the build - ```$ npm run build && npm start```
-- Instantly create React components - ```$ react g component feed footer``` 
+- Instantly create React components - ```$ react g component feed footer```
 - Check with interactive view - ```$ react v -c```
 
 ## Usage
 
-### react init [name]
+### react init [name] [git repository URL]
 *alias: i*
 
 #### name
 
 Project name.
+
+#### Git repository URL (optional)
+
+Git repository URL that you need to use as the template.
 
 #### Options
 
@@ -111,7 +119,7 @@ Create react-cli configuration file, `.reactclirc` (similar to `.babelrc`). Add 
 
 ```
 {
-	"client": "src" 
+	"client": "src"
 }
 ```
 

@@ -8,6 +8,8 @@ const configRc = require("../lib/config");
 const viewDirectoryStructure = require("../lib/view");
 const packageVersion = require("../package.json").version;
 const checkDuplicates = require("../lib/utils/checkduplicates");
+const checkDuplicateElement = require("../lib/utils/checkduplicateelement");
+
 const ora = require("ora");
 
 init = new initApp();
@@ -42,7 +44,7 @@ program
 							`\t$ cd ${projectname}\n \t$ npm install \n \tHappy hacking ♥`
 						);
 					}, 1000);
-					
+
 				} else {
 					setTimeout(() => {
 						spinner.text = "something went wrong!";
@@ -133,7 +135,11 @@ program
 	.description("generate a react component")
 	.action(function(type, modulename, name, options) {
 		if (type !== undefined && modulename !== undefined) {
+      if(!checkDuplicateElement (type, modulename, name)){
+        return;
+      }
 			if (type === "component") {
+
 				let choices = [];
 
 				let numberOfPropTypes = 0;
@@ -172,8 +178,8 @@ program
 							name: "componentType",
 							message: "Select component type",
 							paginated: true,
-							choices: choices
-						},
+              choices: choices
+            },
 						{
 							type: "list",
 							name: "propTypes",
