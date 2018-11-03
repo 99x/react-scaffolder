@@ -1,10 +1,9 @@
-const assert = require("chai").assert;
 const generateApp = require("../lib/generate");
 
 generate = new generateApp();
 
-describe("Create react components", function() {
-	it("should create a parent react component", function(done) {
+describe("Create react components", () => {
+	test("should create a parent react component", done => {
 		const answers = {
 			componentType: "child",
 			propTypes: "yes",
@@ -22,7 +21,7 @@ describe("Create react components", function() {
 			answers,
 			answersInner,
 			function(status) {
-				assert.equal(status, "module doesn't exist");
+				expect(status).toEqual("module doesn't exist");
 				done();
 			}
 		);

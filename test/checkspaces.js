@@ -1,11 +1,10 @@
-const assert = require("chai").assert;
 const checkSpaces = require("../lib/utils/checkspaces");
 
-describe("Check spaces API", function() {
-	it("should return array without spaces", function(done) {
+describe("Check spaces API", () => {
+	test("should return array without spaces", done => {
 		let propNames = ["firstname", "lastname", " "];
 		//needs to be fixed
-		assert.equal(checkSpaces(propNames).length, 3);
+		expect(checkSpaces(propNames).length).toEqual(3);
 		done();
 	});
 });

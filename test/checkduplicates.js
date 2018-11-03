@@ -1,16 +1,15 @@
-const assert = require("chai").assert;
 const checkDuplicates = require("../lib/utils/checkduplicates");
 
-describe("Check duplicates API", function() {
-	it("should return false for duplicates", function(done) {
+describe("Check duplicates API", () => {
+	test("should return false for duplicates", done => {
 		let propNames = ["firstname", "firstname"];
-		assert.equal(checkDuplicates(propNames), false);
+		expect(checkDuplicates(propNames)).toEqual(false);
 		done();
 	});
 	
-	it("should return true for clean propNames", function(done) {
+	test("should return true for clean propNames", done => {
 		let propNames = ["firstname", "lastname"];
-		assert.equal(checkDuplicates(propNames), true);
+		expect(checkDuplicates(propNames)).toEqual(true);
 		done();
 	});
 });
