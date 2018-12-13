@@ -1,6 +1,6 @@
 {
     "name": "react-scaffolder",
-    "version": "0.3.2",
+    "version": "0.3.3",
     "description": "Scaffolding tool for React",
     "bin": {
         "react": "./bin/initialize.js"
@@ -41,6 +41,6 @@
         "eslint-config-google": "^0.9.1",
         "mocha": "^3.0.2",
         "prettier": "^1.1.0",
-        "rm": "^0.1.6"
+        "rm": "^0.3.0"
     }
 }

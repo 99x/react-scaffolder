@@ -69,7 +69,6 @@ program
  * command changing .reactclirc file
  */
 program.command("config [key] [value]").alias("c").action(function(key, value) {
-	const spinner = ora("configuring .reactclirc").start();
 	configRc(key, value, function config(err, res) {
 		if (err) {
 			setTimeout(() => {
@@ -86,7 +85,7 @@ program.command("config [key] [value]").alias("c").action(function(key, value) {
 });
 
 /**
- * command view directory structure - components/tests
+ * command view directory structure - tests
  */
 program
 	.command("view")
