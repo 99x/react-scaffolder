@@ -34,24 +34,27 @@ program
 		} else {
 			const spinner = ora("creating directory structure").start();
 
-			init.initialize(projectname, gitrepository, options.eslint,
+			init.initialize(
+				projectname,
+				gitrepository,
+				options.eslint,
 				function initProject(res) {
-				if (res) {
-					setTimeout(() => {
-						spinner.text = "application created successfully";
-						spinner.succeed();
-						console.log(
-							`\t$ cd ${projectname}\n \t$ npm install \n \tHappy hacking ♥`
-						);
-					}, 1000);
-
-				} else {
-					setTimeout(() => {
-						spinner.text = "something went wrong!";
-						spinner.fail();
-					}, 1000);
+					if (res) {
+						setTimeout(() => {
+							spinner.text = "application created successfully";
+							spinner.succeed();
+							console.log(
+								`\t$ cd ${projectname}\n \t$ npm install \n \tHappy hacking ♥`
+							);
+						}, 1000);
+					} else {
+						setTimeout(() => {
+							spinner.text = "something went wrong!";
+							spinner.fail();
+						}, 1000);
+					}
 				}
-			});
+			);
 		}
 	})
 	.on("--help", function() {
@@ -325,5 +328,4 @@ program
 /**
  * parse commander object
  */
-
 program.parse(process.argv);

@@ -1,6 +1,7 @@
 const assert = require("chai").assert;
 const initApp = require("../lib/init");
 const rmdir = require("rimraf");
+const nock = require("nock");
 
 init = new initApp();
 
