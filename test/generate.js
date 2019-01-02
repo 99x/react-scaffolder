@@ -8,9 +8,7 @@ describe("Create react components", function() {
 		const answers = {
 			componentType: "child",
 			propTypes: "yes",
-			propNo: "2",
-			propName: "first",
-			propType: "number"
+			propNames: "first last"
 		};
 		const answersInner = {
 			first: "string",
