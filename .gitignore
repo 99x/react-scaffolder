@@ -41,3 +41,6 @@ package-lock.json
 .node_repl_history
 
 .DS_Store
+
+# folder to manual test generator
+src
