@@ -1,30 +1,39 @@
 const assert = require("chai").assert;
 const generateApp = require("../lib/generate");
+const fs = require('fs.extra');
+const path = require('path');
+const rmdir = require("rimraf");
 
 generate = new generateApp();
 
 describe("Create react components", function() {
 	it("should create a parent react component", function(done) {
 		const answers = {
-			componentType: "child",
+			componentType: "parent",
 			propTypes: "yes",
-			propNo: "2",
-			propName: "first",
-			propType: "number"
+			propNames: "title likes"
 		};
 		const answersInner = {
-			first: "string",
-			last: "string"
+			title: "string",
+			likes: "number"
 		};
-		generate.createComponent(
-			"core",
-			"sample",
-			answers,
-			answersInner,
-			function(status) {
-				assert.equal(status, "module doesn't exist");
-				done();
-			}
-		);
+		fs.mkdirp(path.join(process.cwd(), "test_folder/components/"), err => {
+			if (err) throw new Error("failed to create folders");
+			generate.createComponent(
+				"TestComponent",
+				"FileName",
+				answers,
+				answersInner,
+				function(status) {
+					rmdir(path.join(process.cwd(), "test_folder"), err => {
+						if (err) throw new Error("failed to remove folder");
+						else {
+							assert.equal(status, true);
+							done();
+						}
+					});
+				}
+			);
+		});
 	});
 });

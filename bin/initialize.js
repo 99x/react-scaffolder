@@ -192,46 +192,19 @@ program
 						},
 						{
 							type: "input",
-							name: "propNo",
-							message: "Number of prop types",
-							paginated: true,
-							validate: function(input) {
-								let regex = /^\d+$/;
-								//return false;
-								if (!regex.test(input)) {
-									return "enter a number";
-								}
-								return true;
-							},
-							when: function(answer) {
-								return answer.propTypes === "yes";
-							}
-						},
-						{
-							type: "input",
 							name: "propNames",
 							message: "Prop names",
 							paginated: true,
 							when: function(answer) {
-								numberOfPropTypes = answer.propNo;
 								return answer.propTypes === "yes";
 							},
 							validate: function(input) {
 								let propNames = input.split(" ");
-								if (
-									propNames.length !==
-									Number(numberOfPropTypes)
-								) {
-									return `enter ${numberOfPropTypes} prop names`;
-								}
-								let regex = /^[a-zA-Z]+$/;
+								numberOfPropTypes = propNames.length;
 
 								if (!checkDuplicates(propNames)) {
 									return "duplicate prop names";
 								}
-								// if(!regex.test(input)) {
-								// 	return 'enter valid name [alpha]'
-								// }
 								return true;
 							}
 						}
