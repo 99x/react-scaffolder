@@ -17,7 +17,8 @@ describe("Create react components", function() {
 			title: "string",
 			likes: "number"
 		};
-		fs.mkdirp(path.join(process.cwd(), "test_folder/components/"), error => {
+		fs.mkdirp(path.join(process.cwd(), "test_folder/components/"), err => {
+			if (err) throw new Error("failed to create folders");
 			generate.createComponent(
 				"TestComponent",
 				"FileName",
