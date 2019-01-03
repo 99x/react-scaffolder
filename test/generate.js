@@ -15,8 +15,8 @@ describe("Create react components", function() {
 			two: "string"
 		};
 		generate.createComponent(
-			"Test",
-			"That",
+			"TestComponent",
+			"FileName",
 			answers,
 			answersInner,
 			function(status) {
