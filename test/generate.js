@@ -8,11 +8,11 @@ describe("Create react components", function() {
 		const answers = {
 			componentType: "parent",
 			propTypes: "yes",
-			propNames: "one two"
+			propNames: "title likes"
 		};
 		const answersInner = {
-			one: "number",
-			two: "string"
+			title: "string",
+			likes: "number"
 		};
 		generate.createComponent(
 			"TestComponent",
