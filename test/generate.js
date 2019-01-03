@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
 const generateApp = require("../lib/generate");
+const rmdir = require("rimraf");
 
 generate = new generateApp();
 
@@ -20,8 +21,13 @@ describe("Create react components", function() {
 			answers,
 			answersInner,
 			function(status) {
-				assert.equal(status, true);
-				done();
+				rmdir("./templates/src/components/TestComponent", err => {
+					if (err) throw new Error("failed to remove folder");
+					else {
+						assert.equal(status, true);
+						done();
+					}
+				});
 			}
 		);
 	});
