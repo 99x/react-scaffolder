@@ -17,14 +17,14 @@ describe("Create react components", function() {
 			title: "string",
 			likes: "number"
 		};
-		fs.mkdirp(path.join(process.cwd(), 'test_folder/components'), error => {
+		fs.mkdirp(path.join(process.cwd(), "test_folder/components/"), error => {
 			generate.createComponent(
 				"TestComponent",
 				"FileName",
 				answers,
 				answersInner,
 				function(status) {
-					rmdir("./test_folder", err => {
+					rmdir(path.join(process.cwd(), "test_folder"), err => {
 						if (err) throw new Error("failed to remove folder");
 						else {
 							assert.equal(status, true);
