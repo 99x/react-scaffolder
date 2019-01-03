@@ -6,21 +6,21 @@ generate = new generateApp();
 describe("Create react components", function() {
 	it("should create a parent react component", function(done) {
 		const answers = {
-			componentType: "child",
+			componentType: "parent",
 			propTypes: "yes",
-			propNames: "first last"
+			propNames: "one two"
 		};
 		const answersInner = {
-			first: "string",
-			last: "string"
+			one: "number",
+			two: "string"
 		};
 		generate.createComponent(
-			"core",
-			"sample",
+			"Test",
+			"That",
 			answers,
 			answersInner,
 			function(status) {
-				assert.equal(status, "module doesn't exist");
+				assert.equal(status, true);
 				done();
 			}
 		);

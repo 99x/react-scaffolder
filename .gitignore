@@ -43,4 +43,4 @@ package-lock.json
 .DS_Store
 
 # folder to manual test generator
-/src
+src
