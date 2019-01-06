@@ -1,3 +1,7 @@
 {
-    "extends": ["eslint:recommended", "google"]
+    "extends": ["eslint:recommended", "google"],
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    }
 }
