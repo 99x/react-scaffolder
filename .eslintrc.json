@@ -6,5 +6,8 @@
         "ecmaFeatures": {
             "jsx": true
         }
+    },
+    "rules": {
+        "comma-dangle": ["error", "never"]
     }
 }
