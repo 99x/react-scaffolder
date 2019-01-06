@@ -1,9 +1,11 @@
 import React from 'react';
 
-const index = (props) => (
+const Test = (props) => (
 	<div>
 	  { /* JSX */ }
 	</div>
 );
 
-export default index;
+Test.propTypes = {};
+
+export default Test;
