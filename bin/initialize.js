@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 
-const program = require("commander");
-const inquirer = require("inquirer");
-const initApp = require("../lib/init");
-const generateApp = require("../lib/generate");
-const configRc = require("../lib/config");
-const viewDirectoryStructure = require("../lib/view");
-const packageVersion = require("../package.json").version;
-const checkDuplicates = require("../lib/utils/checkduplicates");
-const checkDuplicateElement = require("../lib/utils/checkduplicateelement");
+const program = require('commander');
+const inquirer = require('inquirer');
+const initApp = require('../lib/init');
+const generateApp = require('../lib/generate');
+const configRc = require('../lib/config');
+const viewDirectoryStructure = require('../lib/view');
+const packageVersion = require('../package.json').version;
+const checkDuplicates = require('../lib/utils/checkduplicates');
+const checkDuplicateElement = require('../lib/utils/checkduplicateelement');
 
-const ora = require("ora");
+const ora = require('ora');
 
 init = new initApp();
 
@@ -23,16 +23,16 @@ program.version(packageVersion);
  * command for initializing a project
  */
 program
-	.command("init [projectname] [gitrepository]")
-	.alias("i")
-	.description("initialize React project")
-	.option("-l, --eslint", "eslint required or not ?")
+	.command('init [projectname] [gitrepository]')
+	.alias('i')
+	.description('initialize React project')
+	.option('-l, --eslint', 'eslint required or not ?')
 	.action(function(projectname, gitrepository, options) {
 		if (projectname === undefined) {
-			console.log("provide a project name");
+			console.log('provide a project name');
 			return;
 		} else {
-			const spinner = ora("creating directory structure").start();
+			const spinner = ora('creating directory structure').start();
 
 			init.initialize(
 				projectname,
@@ -41,7 +41,7 @@ program
 				function initProject(res) {
 					if (res) {
 						setTimeout(() => {
-							spinner.text = "application created successfully";
+							spinner.text = 'application created successfully';
 							spinner.succeed();
 							console.log(
 								`\t$ cd ${projectname}\n \t$ npm install \n \tHappy hacking ♥`
@@ -49,7 +49,7 @@ program
 						}, 1000);
 					} else {
 						setTimeout(() => {
-							spinner.text = "something went wrong!";
+							spinner.text = 'something went wrong!';
 							spinner.fail();
 						}, 1000);
 					}
@@ -57,29 +57,29 @@ program
 			);
 		}
 	})
-	.on("--help", function() {
-		console.log("  Examples:");
+	.on('--help', function() {
+		console.log('  Examples:');
 		console.log();
-		console.log("    $ react-cli init awesomereact");
-		console.log("    $ react-cli init -l awesomereact");
+		console.log('    $ react-cli init awesomereact');
+		console.log('    $ react-cli init -l awesomereact');
 		console.log();
 	});
 
 /**
  * command changing .reactclirc file
  */
-program.command("config [key] [value]").alias("c").action(function(key, value) {
-	const spinner = ora("configuring .reactclirc").start();
+program.command('config [key] [value]').alias('c').action(function(key, value) {
+	const spinner = ora('configuring .reactclirc').start();
 	configRc(key, value, function config(err, res) {
-		if (err) {
+	cif (err) {
 			setTimeout(() => {
-				spinner.text = "something went wrong !";
+				spinner.text = 'something went wrong !';
 				spinner.fail();
 			}, 1000);
-			throw new Error("unable to change config");
+			throw new Error('unable to change config');
 		}
 		setTimeout(() => {
-			spinner.text = "successfully configured !";
+			spinner.text = 'successfully configured !';
 			spinner.succeed();
 		}, 1000);
 	});
@@ -89,16 +89,16 @@ program.command("config [key] [value]").alias("c").action(function(key, value) {
  * command view directory structure - components/tests
  */
 program
-	.command("view")
-	.alias("v")
-	.option("-c, --component", "view component only")
-	.option("-t, --test", "view test only")
+	.command('view')
+	.alias('v')
+	.option('-c, --component', 'view component only')
+	.option('-t, --test', 'view test only')
 	.action(function(options) {
-		const spinner = ora("loading directory structure \n").start();
+		const spinner = ora('loading directory structure \n').start();
 		if (options.component && options.test) {
 			viewDirectoryStructure(true, true, function(status) {
 				if (status) {
-					spinner.text = "successfully loaded !";
+					spinner.text = 'successfully loaded !';
 					spinner.succeed();
 				} else {
 					spinner.fail();
@@ -107,24 +107,24 @@ program
 		} else if (options.component) {
 			viewDirectoryStructure(true, false, function(status) {
 				if (status) {
-					spinner.text = "successfully loaded !";
+					spinner.text = 'successfully loaded !';
 					spinner.succeed();
 				} else {
-					spinner.text = "successfully loaded !";
+					spinner.text = 'successfully loaded !';
 					spinner.fail();
 				}
 			});
 		} else if (options.test) {
 			viewDirectoryStructure(false, true, function(status) {
 				if (status) {
-					spinner.text = "successfully loaded !";
+					spinner.text = 'successfully loaded !';
 					spinner.succeed();
 				} else {
 					spinner.fail();
 				}
 			});
 		} else if (!options.component && !options.test) {
-			spinner.text = "provide options";
+			spinner.text = 'provide options';
 			spinner.fail();
 		}
 	});
@@ -133,24 +133,23 @@ program
  * command for generating a react component
  */
 program
-	.command("generate [type] [modulename] [name]")
-	.alias("g")
-	.description("generate a react component")
+	.command('generate [type] [modulename] [name]')
+	.alias('g')
+	.description('generate a react component')
 	.action(function(type, modulename, name, options) {
 		if (type !== undefined && modulename !== undefined) {
-      if(!checkDuplicateElement (type, modulename, name)){
+      if (!checkDuplicateElement(type, modulename, name)) {
         return;
       }
-			if (type === "component") {
-
+			if (type === 'component') {
 				let choices = [];
 
 				let numberOfPropTypes = 0;
 
 				let inputPropTypeName = {
-					type: "input",
-					name: "propName",
-					message: "Prop name",
+					type: 'input',
+					name: 'propName',
+					message: 'Prop name',
 					paginated: true,
 					validate: function(input) {
 						let regex = /[^a-z\d]/i;
@@ -158,52 +157,52 @@ program
 						return regex.test(input);
 					},
 					when: function(answer) {
-						return answer.propTypes === "yes";
+						return answer.propTypes === 'yes';
 					}
 				};
 
 				choices.push({
-					name: "child",
-					value: "child",
-					short: "child"
+					name: 'child',
+					value: 'child',
+					short: 'child'
 				});
 
 				choices.push({
-					name: "parent",
-					value: "parent",
-					short: "parent"
+					name: 'parent',
+					value: 'parent',
+					short: 'parent'
 				});
 
 				inquirer
 					.prompt([
 						{
-							type: "list",
-							name: "componentType",
-							message: "Select component type",
+							type: 'list',
+							name: 'componentType',
+							message: 'Select component type',
 							paginated: true,
               choices: choices
             },
 						{
-							type: "list",
-							name: "propTypes",
-							message: "Add propTypes",
+							type: 'list',
+							name: 'propTypes',
+							message: 'Add propTypes',
 							paginated: true,
-							choices: ["yes", "no"]
+							choices: ['yes', 'no']
 						},
 						{
-							type: "input",
-							name: "propNames",
-							message: "Prop names",
+							type: 'input',
+							name: 'propNames',
+							message: 'Prop names',
 							paginated: true,
 							when: function(answer) {
-								return answer.propTypes === "yes";
+								return answer.propTypes === 'yes';
 							},
 							validate: function(input) {
-								let propNames = input.split(" ");
+								let propNames = input.split(' ');
 								numberOfPropTypes = propNames.length;
 
 								if (!checkDuplicates(propNames)) {
-									return "duplicate prop names";
+									return 'duplicate prop names';
 								}
 								return true;
 							}
@@ -211,7 +210,7 @@ program
 					])
 					.then(function(answers) {
 						generate = new generateApp();
-						if (answers.propTypes === "no") {
+						if (answers.propTypes === 'no') {
 							generate.createComponent(
 								modulename,
 								name,
@@ -220,17 +219,17 @@ program
 								function(status) {
 									if (status) {
 										const spinner = ora(
-											"loading directory structure \n"
+											'loading directory structure \n'
 										).start();
 										spinner.text =
-											"component created successfully";
+											'component created successfully';
 										spinner.succeed();
 									}
 								}
 							);
 						} else {
 							let opts = [];
-							let propNames = answers.propNames.split(" ");
+							let propNames = answers.propNames.split(' ');
 
 							for (
 								let count = 0;
@@ -238,18 +237,18 @@ program
 								count++
 							) {
 								let propTypeChoice = {
-									type: "list",
+									type: 'list',
 									name: `${propNames[count]}`,
 									message: `Select prop type for ${propNames[count]}`,
 									paginated: true,
 									choices: [
-										"number",
-										"string",
-										"bool",
-										"object",
-										"array",
-										"func",
-										"symbol"
+										'number',
+										'string',
+										'bool',
+										'object',
+										'array',
+										'func',
+										'symbol'
 									]
 								};
 								opts.push(propTypeChoice);
@@ -263,10 +262,10 @@ program
 									function(status) {
 										if (status) {
 											const spinner = ora(
-												"loading directory structure \n"
+												'loading directory structure \n'
 											).start();
 											spinner.text =
-												"component created successfully";
+												'component created successfully';
 											spinner.succeed();
 										}
 									}
@@ -274,27 +273,27 @@ program
 							});
 						}
 					});
-			} else if (type === "test") {
+			} else if (type === 'test') {
 				generate = new generateApp();
 				generate.createTest(modulename, name, function(status) {
-					const spinner = ora("creating test file \n").start();
-					spinner.text = "test file created successfully";
+					const spinner = ora('creating test file \n').start();
+					spinner.text = 'test file created successfully';
 					spinner.succeed();
 				});
 			}
 		} else {
 			setTimeout(() => {
-				const spinner = ora("").start();
-				spinner.text = "please provide required options";
+				const spinner = ora('').start();
+				spinner.text = 'please provide required options';
 				spinner.fail();
 			}, 500);
 		}
 	})
-	.on("--help", function() {
-		console.log("  Examples:");
+	.on('--help', function() {
+		console.log('  Examples:');
 		console.log();
-		console.log("    $ react-cli generate core helloworld -p");
-		console.log("    $ react-cli generate core hello -c");
+		console.log('    $ react-cli generate core helloworld -p');
+		console.log('    $ react-cli generate core hello -c');
 		console.log();
 	});
 
