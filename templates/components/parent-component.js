@@ -1,25 +1,25 @@
 import React from 'react';
 
 class <name> extends React.Component {
-	constructor(props) {
-		super(props);
-	}
+  constructor(props) {
+    super(props);
+  }
 
-	componentDidMount() {
-		//data loading
-	}
+  componentDidMount() {
+    //data loading
+  }
 
-	componentWillUnmount() {
-		//cleanup
-	}
+  componentWillUnmount() {
+    //cleanup
+  }
 
-	render() {
-	  return (
-	     <div>
-	       { /* JSX */ }
-	     </div>
-	  );
-	}
+  render() {
+    return (
+       <div>
+         { /* JSX */ }
+       </div>
+    );
+  }
 }
 
 export default <name>;

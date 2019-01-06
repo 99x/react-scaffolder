@@ -1,29 +1,14 @@
 import React from 'react';
 
-class Test extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
-	componentDidMount() {
-		//data loading
-	}
-
-	componentWillUnmount() {
-		//cleanup
-	}
-
-	render() {
-	  return (
-	     <div>
-	       { /* JSX */ }
-	     </div>
-	  );
-	}
-}
+const Test = (props) => (
+  <div>
+    { /* JSX */ }
+  </div>
+);
 
 Test.propTypes = {
-  title: React.PropTypes.string
+  title: React.PropTypes.string,
+  likes: React.PropTypes.number
 };
 
 export default Test;
