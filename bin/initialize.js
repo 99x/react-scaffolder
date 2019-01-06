@@ -71,7 +71,7 @@ program
 program.command('config [key] [value]').alias('c').action(function(key, value) {
 	const spinner = ora('configuring .reactclirc').start();
 	configRc(key, value, function config(err, res) {
-	cif (err) {
+		if (err) {
 			setTimeout(() => {
 				spinner.text = 'something went wrong !';
 				spinner.fail();
@@ -136,6 +136,7 @@ program
 	.command('generate [type] [modulename] [name]')
 	.alias('g')
 	.description('generate a react component')
+	.option('-f, --file', 'Gerate file without folder?')
 	.action(function(type, modulename, name, options) {
 		if (type !== undefined && modulename !== undefined) {
       if (!checkDuplicateElement(type, modulename, name)) {
@@ -210,6 +211,7 @@ program
 					])
 					.then(function(answers) {
 						generate = new generateApp();
+						console.log('program.file!!!!!!!!!', program.file);
 						if (answers.propTypes === 'no') {
 							generate.createComponent(
 								modulename,
@@ -225,7 +227,8 @@ program
 											'component created successfully';
 										spinner.succeed();
 									}
-								}
+								},
+								program.file
 							);
 						} else {
 							let opts = [];

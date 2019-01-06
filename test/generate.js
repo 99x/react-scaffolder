@@ -21,19 +21,51 @@ describe("Create react components", function() {
 			if (err) throw new Error("failed to create folders");
 			generate.createComponent(
 				"TestComponent",
-				"FileName",
+				"Component",
 				answers,
 				answersInner,
 				function(status) {
-					rmdir(path.join(process.cwd(), "test_folder"), err => {
-						if (err) throw new Error("failed to remove folder");
-						else {
+					// rmdir(path.join(process.cwd(), "test_folder"), err => {
+					// 	if (err) throw new Error("failed to remove folder");
+					// 	else {
 							assert.equal(status, true);
 							done();
-						}
-					});
+					// 	}
+					// });
 				}
 			);
 		});
 	});
+	
+	it("should create a parent react component without folder", function(done) {
+		const answers = {
+			componentType: "parent",
+			propTypes: "yes",
+			propNames: "title likes"
+		};
+		const answersInner = {
+			title: "string",
+			likes: "number"
+		};
+		fs.mkdirp(path.join(process.cwd(), "test_folder/components/"), err => {
+			if (err) throw new Error("failed to create folders");
+			generate.createComponent(
+				"OnlyFile",
+				undefined,
+				answers,
+				answersInner,
+				function(status) {
+					// rmdir(path.join(process.cwd(), "test_folder"), err => {
+					// 	if (err) throw new Error("failed to remove folder");
+					// 	else {
+							assert.equal(status, true);
+							done();
+					// 	}
+					// });
+				},
+				true
+			);
+		});
+	});
+
 });
