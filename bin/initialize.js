@@ -147,21 +147,6 @@ program
 
 				let numberOfPropTypes = 0;
 
-				let inputPropTypeName = {
-					type: "input",
-					name: "propName",
-					message: "Prop name",
-					paginated: true,
-					validate: function(input) {
-						let regex = /[^a-z\d]/i;
-						return false;
-						return regex.test(input);
-					},
-					when: function(answer) {
-						return answer.propTypes === "yes";
-					}
-				};
-
 				choices.push({
 					name: "child",
 					value: "child",
