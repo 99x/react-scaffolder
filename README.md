@@ -67,13 +67,8 @@ React component name.
 
 #### Options
 
-* `-f`
-or
-* `--file`
-If you need to generate just file without folder add -f option
-```
-react generate component YoursFilename -f
-```
+* `-f` generate only file and use module as filename
+
 
 ---------------------------------------
 
