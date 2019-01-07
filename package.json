@@ -40,7 +40,7 @@
         "eslint": "^4.5.0",
         "eslint-config-google": "^0.9.1",
         "mocha": "^3.0.2",
-        "prettier": "^1.1.0",
+        "prettier": "1.15.3",
         "rm": "^0.1.6"
     }
 }
