@@ -217,6 +217,24 @@ program
             } else {
               let opts = [];
               let propNames = answers.propNames.split(' ');
+              // TODO: refact props: {typed: [], notTyped: []}
+              // and better regexp
+              const propsWithoutTypes = propNames.filter(function(prop) {
+                return !/:/.test(prop);
+              });
+
+              const propsWithTypes = propNames.filter(function(prop) {
+                return /:/.test(prop);
+              });
+
+              let result = {};
+              for (prop of propsWithTypes) {
+                result[prop.match(/^[a-z0-9]+/ig)[0]] = prop.match(/:[a-z0-9]+/ig)[0].substring(1);
+              };
+
+              propNames = propsWithoutTypes;
+              //todo: fix that
+              numberOfPropTypes = propNames.length;
 
               for (
                 let count = 0;
@@ -241,11 +259,12 @@ program
                 opts.push(propTypeChoice);
               }
               inquirer.prompt(opts).then(function(answersInner) {
+                const _answersInner = {...result, ...answersInner};
                 generate.createComponent(
                   modulename,
                   name,
                   answers,
-                  answersInner,
+                  _answersInner,
                   options.file,
                   function(status) {
                     if (status) {
