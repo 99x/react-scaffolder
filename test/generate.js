@@ -24,6 +24,7 @@ describe("Create react components", function() {
 				"Component",
 				answers,
 				answersInner,
+				false,
 				function(status) {
 					// rmdir(path.join(process.cwd(), "test_folder"), err => {
 					// 	if (err) throw new Error("failed to remove folder");
@@ -54,6 +55,7 @@ describe("Create react components", function() {
 				undefined,
 				answers,
 				answersInner,
+				true,
 				function(status) {
 					// rmdir(path.join(process.cwd(), "test_folder"), err => {
 					// 	if (err) throw new Error("failed to remove folder");
@@ -62,8 +64,7 @@ describe("Create react components", function() {
 							done();
 					// 	}
 					// });
-				},
-				true
+				}
 			);
 		});
 	});

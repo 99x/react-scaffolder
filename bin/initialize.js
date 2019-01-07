@@ -211,13 +211,13 @@ program
 					])
 					.then(function(answers) {
 						generate = new generateApp();
-						console.log('program.file!!!!!!!!!', program.file);
 						if (answers.propTypes === 'no') {
 							generate.createComponent(
 								modulename,
 								name,
 								answers,
 								null,
+								program.file,
 								function(status) {
 									if (status) {
 										const spinner = ora(
@@ -227,8 +227,7 @@ program
 											'component created successfully';
 										spinner.succeed();
 									}
-								},
-								program.file
+								}
 							);
 						} else {
 							let opts = [];
@@ -262,6 +261,7 @@ program
 									name,
 									answers,
 									answersInner,
+									program.file,
 									function(status) {
 										if (status) {
 											const spinner = ora(
