@@ -67,7 +67,7 @@ React component name.
 
 #### Options
 
-* `-f` generate only file and use module as filename
+* `-f` Generate only file and use module as filename
 
 
 ---------------------------------------
