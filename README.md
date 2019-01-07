@@ -65,6 +65,16 @@ Module name where the react component should be placed within. (Subdirectory wit
 
 React component name.
 
+#### Options
+
+* `-f`
+or
+* `--file`
+If you need to generate just file without folder add -f option
+```
+react generate component YoursFilename -f
+```
+
 ---------------------------------------
 
 ### react generate test [module] [component]
