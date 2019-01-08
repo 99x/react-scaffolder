@@ -229,7 +229,9 @@ program
 
               let result = {};
               for (prop of propsWithTypes) {
-                result[prop.match(/^[a-z0-9]+/ig)[0]] = prop.match(/:[a-z0-9]+/ig)[0].substring(1);
+                const match = prop.match(/^[a-z0-9]+|\*/ig);
+                const key = match[0] + (match[1] ? '*' : '');
+                result[key] = prop.match(/:[a-z0-9]+/ig)[0].substring(1);
               };
 
               propNames = propsWithoutTypes;
