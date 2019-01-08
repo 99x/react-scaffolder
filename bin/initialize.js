@@ -178,7 +178,7 @@ program
             {
               type: 'input',
               name: 'propNames',
-              message: 'Prop names',
+              message: 'Prop names (place "*" at the end each name that required)',
               paginated: true,
               when: function(answer) {
                 return answer.propTypes === 'yes';
