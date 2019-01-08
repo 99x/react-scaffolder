@@ -178,7 +178,7 @@ program
             {
               type: 'input',
               name: 'propNames',
-              message: 'Prop names',
+              message: 'Prop names (prop* sets as requred and also with type prop:bool*)',
               paginated: true,
               when: function(answer) {
                 return answer.propTypes === 'yes';
