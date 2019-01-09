@@ -136,14 +136,15 @@ program
   .command('generate [type] [modulename] [name]')
   .alias('g')
   .description('generate a react component')
+  .option('-f, --file', 'Gerate file without folder?')
   .action(function(type, modulename, name, options) {
+
     if (type !== undefined && modulename !== undefined) {
       if (!checkDuplicateElement(type, modulename, name)) {
         return;
       }
       if (type === 'component') {
         let choices = [];
-
         let numberOfPropTypes = 0;
 
         choices.push({
@@ -201,6 +202,7 @@ program
                 name,
                 answers,
                 null,
+                options.file,
                 function(status) {
                   if (status) {
                     const spinner = ora(
@@ -244,6 +246,7 @@ program
                   name,
                   answers,
                   answersInner,
+                  options.file,
                   function(status) {
                     if (status) {
                       const spinner = ora(

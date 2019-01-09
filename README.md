@@ -64,6 +64,12 @@ Module name where the react component should be placed within. (Subdirectory wit
 #### component
 
 React component name.
+If you leave that empty generator creates folder with module name, and index.js inside
+
+#### Options
+
+* `-f` Generate only file and use module as filename
+
 
 ---------------------------------------
 
