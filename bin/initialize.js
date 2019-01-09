@@ -179,7 +179,7 @@ program
               type: 'input',
               name: 'propNames',
               //TODO: change docs
-              message: 'Prop names (prop* sets as requred and also with type prop:bool*)',
+              message: 'Prop names',
               paginated: true,
               when: function(answer) {
                 return answer.propTypes === 'yes';
