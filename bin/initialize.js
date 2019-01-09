@@ -185,7 +185,7 @@ program
               },
               validate: function(input) {
                 let propNames = input.split(' ');
-                numberOfPropTypes = propNames.length;
+                //numberOfPropTypes = propNames.length;
 
                 if (!checkDuplicates(propNames)) {
                   return 'duplicate prop names';
@@ -217,25 +217,19 @@ program
             } else {
               let opts = [];
               let propNames = answers.propNames.split(' ');
-              // TODO: refact props: {typed: [], notTyped: []}
-              // and better regexp
-              const propsWithoutTypes = propNames.filter(function(prop) {
+              const result = {};
+
+              for (prop of propNames){
+                if(/:/.test(prop)){
+                  const match = prop.match(/^[a-z0-9]+|\*/ig);
+                  const key = match[0] + (match[1] ? '*' : '');
+                  result[key] = prop.match(/:[a-z0-9]+/ig)[0].substring(1);
+                }
+              }
+
+              propNames = propNames.filter(function(prop) {
                 return !/:/.test(prop);
               });
-
-              const propsWithTypes = propNames.filter(function(prop) {
-                return /:/.test(prop);
-              });
-
-              let result = {};
-              for (prop of propsWithTypes) {
-                const match = prop.match(/^[a-z0-9]+|\*/ig);
-                const key = match[0] + (match[1] ? '*' : '');
-                result[key] = prop.match(/:[a-z0-9]+/ig)[0].substring(1);
-              };
-
-              propNames = propsWithoutTypes;
-              //todo: fix that
               numberOfPropTypes = propNames.length;
 
               for (
