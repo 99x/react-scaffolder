@@ -221,9 +221,9 @@ program
 
               for (prop of propNames){
                 if(/:/.test(prop)){
-                  const match = prop.match(/^[a-z0-9]+|:.[a-z0-9]+|\*/ig);
+                  const match = prop.match(/^[a-z0-9]+|(?<=:).[a-z0-9]+|\*/ig);
                   const key = match[0] + (match[2] ? '*' : '');
-                  result[key] = match[1].substring(1)
+                  result[key] = match[1]
                 }
               }
 
