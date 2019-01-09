@@ -223,7 +223,7 @@ program
                 if(/:/.test(prop)){
                   const match = prop.match(/^[a-z0-9]+|\*/ig);
                   const key = match[0] + (match[1] ? '*' : '');
-                  result[key] = prop.match(/:[a-z0-9]+/ig)[0].substring(1);
+                  result[key] = prop.match(/:(.[a-z0-9]+)/i)[1]
                 }
               }
 
