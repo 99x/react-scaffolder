@@ -186,7 +186,6 @@ program
               },
               validate: function(input) {
                 let propNames = input.split(' ');
-                //numberOfPropTypes = propNames.length;
 
                 if (!checkDuplicates(propNames)) {
                   return 'duplicate prop names';
