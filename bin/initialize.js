@@ -178,7 +178,6 @@ program
             {
               type: 'input',
               name: 'propNames',
-              //TODO: change docs
               message: 'Prop names',
               paginated: true,
               when: function(answer) {
@@ -255,12 +254,12 @@ program
                 opts.push(propTypeChoice);
               }
               inquirer.prompt(opts).then(function(answersInner) {
-                const _answersInner = {...withTypes, ...answersInner};
+                const __answersInner = {...withTypes, ...answersInner};
                 generate.createComponent(
                   modulename,
                   name,
                   answers,
-                  _answersInner,
+                  __answersInner,
                   options.file,
                   function(status) {
                     if (status) {
