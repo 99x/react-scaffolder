@@ -217,13 +217,13 @@ program
             } else {
               let opts = [];
               let propNames = answers.propNames.split(' ');
-              const withProps = {};
+              const withTypes = {};
 
               for (prop of propNames){
                 if(/:/.test(prop)){
                   const [name, type, required] = prop.match(/^[a-z0-9]+|(?<=:).[a-z0-9]+|\*/ig);
                   const key = name + (required ? '*' : '');
-                  withProps[key] = type
+                  withTypes[key] = type
                 }
               }
 
@@ -255,7 +255,7 @@ program
                 opts.push(propTypeChoice);
               }
               inquirer.prompt(opts).then(function(answersInner) {
-                const _answersInner = {...withProps, ...answersInner};
+                const _answersInner = {...withTypes, ...answersInner};
                 generate.createComponent(
                   modulename,
                   name,
