@@ -220,7 +220,7 @@ program
 
               for (prop of propNames){
                 if(/:/.test(prop)){
-                  const [name, type, required] = prop.match(/^[a-z0-9]+|(?<=:).[a-z0-9]+|\*/ig);
+                  const [name, type, required] = prop.match(/^[a-z0-9]+|(?<=:).[a-z0-9]+|\*$/ig);
                   const key = name + (required ? '*' : '');
                   withTypes[key] = type
                 }
