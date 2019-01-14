@@ -70,6 +70,9 @@ If you leave that empty generator creates folder with module name, and index.js 
 
 * `-f` Generate only file and use module as filename
 
+#### Define propNames
+At "Prop names" question you can use "*" to mark as required `title*` and also you can define type `title:string` and sure you can write `title:string*`
+If you didn't define a type cli will ask you to choose it from the list.
 
 ---------------------------------------
 

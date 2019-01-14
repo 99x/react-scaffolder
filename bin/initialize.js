@@ -178,14 +178,13 @@ program
             {
               type: 'input',
               name: 'propNames',
-              message: 'Prop names (place "*" at the end each name that required)',
+              message: 'Prop names',
               paginated: true,
               when: function(answer) {
                 return answer.propTypes === 'yes';
               },
               validate: function(input) {
                 let propNames = input.split(' ');
-                numberOfPropTypes = propNames.length;
 
                 if (!checkDuplicates(propNames)) {
                   return 'duplicate prop names';
@@ -217,6 +216,20 @@ program
             } else {
               let opts = [];
               let propNames = answers.propNames.split(' ');
+              const withTypes = {};
+
+              for (prop of propNames){
+                if(/:/.test(prop)){
+                  const [name, type, required] = prop.match(/^[a-z0-9]+|(?<=:).[a-z0-9]+|\*$/ig);
+                  const key = name + (required ? '*' : '');
+                  withTypes[key] = type
+                }
+              }
+
+              propNames = propNames.filter(function(prop) {
+                return !/:/.test(prop);
+              });
+              numberOfPropTypes = propNames.length;
 
               for (
                 let count = 0;
@@ -241,11 +254,12 @@ program
                 opts.push(propTypeChoice);
               }
               inquirer.prompt(opts).then(function(answersInner) {
+                const __answersInner = {...withTypes, ...answersInner};
                 generate.createComponent(
                   modulename,
                   name,
                   answers,
-                  answersInner,
+                  __answersInner,
                   options.file,
                   function(status) {
                     if (status) {
