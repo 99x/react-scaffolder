@@ -121,9 +121,14 @@ example: `src` (source directory)
 
 ---------------------------------------
 
-### react constants -p
+### react constants [folder] -p
+*alias: const*
 
 Generate file constatns.js with redux constants
+
+#### folder
+Module name where the constatns should be placed within.
+Subdirectory within folder that specified like "client" at .reactclirc file
 
 #### Options
 * -p (--path) - create namespace path/YOUR_CONST

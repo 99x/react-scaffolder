@@ -303,11 +303,10 @@ program
  * command for constatns
  */
 program
-.command('constants')
+.command('constants [folder]')
 .alias('const')
 .option('-p, --path', 'add namespace path/YOUR_CONST')
-.action(function({  path  }) {
-
+.action(function(folder, {  path  }) {
   inquirer
     .prompt([
       {
@@ -333,6 +332,7 @@ program
       const generate = new generateApp();
       generate.createConstants({
         answers,
+        folder,
         cb: function(status) {
           if (status) {
             const spinner = ora();
