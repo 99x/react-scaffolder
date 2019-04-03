@@ -333,7 +333,14 @@ program
       const generate = new generateApp();
       generate.createConstants({
         answers,
-        cb: function(){ console.log(123123123) }
+        cb: function(status) {
+          if (status) {
+            const spinner = ora();
+            spinner.text =
+              'constants created successfully';
+            spinner.succeed();
+          }
+        }
       });
     });
 });

@@ -121,6 +121,16 @@ example: `src` (source directory)
 
 ---------------------------------------
 
+### react constants -p
+
+Generate file constatns.js with redux constants
+
+#### Options
+* -p (--path) - create namespace path/YOUR_CONST
+> export const LOAD_SOME_DATA = 'some_path/LOAD_SOME_DATA';
+
+---------------------------------------
+
 ## Configuring existing projects
 
 To use react-cli in existing React project navigate to directory where React components are created.
