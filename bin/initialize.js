@@ -300,6 +300,45 @@ program
   });
 
 /**
+ * command for constatns
+ */
+program
+.command('constants')
+.alias('const')
+.option('-p, --path', 'add namespace path/YOUR_CONST')
+.action(function({  path  }) {
+
+  inquirer
+    .prompt([
+      {
+        type: 'input',
+        name: 'path',
+        message: 'namespace path/YOUR_CONST',
+        paginated: true,
+        when: function() {
+          return path;
+        }
+      },
+      {
+        type: 'input',
+        name: 'constants',
+        message: 'separated by comma',
+        validate: function(input) {
+          // TODO: not starts from nubmer
+          return true;
+        }
+      }
+    ]).then(function(answers) {
+      // TODO: use import
+      const generate = new generateApp();
+      generate.createConstants({
+        answers,
+        cb: function(){ console.log(123123123) }
+      });
+    });
+});
+
+/**
  * parse commander object
  */
 program.parse(process.argv);
